@@ -1,0 +1,16 @@
+<?php
+/**
+ * Plantilla de configuración local
+ *
+ * Copia este archivo como database.local.php y edita tus credenciales
+ *
+ * Ejemplo:
+ *   cp config/database.local.php.example config/database.local.php
+ */
+return [
+    'host' => '127.0.0.1',
+    'port' => 3306,              // Cambia si tu MySQL usa otro puerto (ej. 3308)
+    'name' => 'customer360',
+    'user' => 'root',
+    'pass' => ''                 // En XAMPP por defecto está vacío
+];

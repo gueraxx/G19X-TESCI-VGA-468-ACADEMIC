@@ -1,0 +1,11 @@
+<?php
+/**
+ * Plantilla de configuración de IA
+ *
+ * Copia este archivo como ai.local.php y edita tu clave:
+ *   cp config/ai.local.php.example config/ai.local.php
+ */
+return [
+    'groq_api_key' => 'gsk_TU_CLAVE_DE_GROQ_AQUI',
+    'groq_model' => 'openai/gpt-oss-120b' 
+];
