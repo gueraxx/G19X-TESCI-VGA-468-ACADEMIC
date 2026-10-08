@@ -2770,3 +2770,125 @@ body, .kpi-card, .chart-card, .table-card, .feature-card, .rec-card, .sidebar, .
 [data-theme="dark"] .badge-role-analyst { background: #1e3a8a; color: #bfdbfe; }
 [data-theme="dark"] .badge-role-sales { background: #14532d; color: #bbf7d0; }
 [data-theme="dark"] .badge-role-viewer { background: #334155; color: #cbd5e1; }
+
+
+/* ============================================================
+   TOAST DE CRUD
+   ============================================================ */
+.crud-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+}
+
+.crud-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.crud-toast i {
+    font-size: 1.2rem;
+}
+
+.crud-toast-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+}
+
+.crud-toast-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+}
+
+.crud-toast-info {
+    background: linear-gradient(135deg, #4361ee, #3b82f6);
+    box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+}
+
+/* ============================================================
+   MODAL DE CLIENTE
+   ============================================================ */
+#customerModal .modal-box {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#customerModal .form-group {
+    margin-bottom: 0;
+}
+
+#customerModal .form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    display: block;
+}
+
+#customerModal .form-group input,
+#customerModal .form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    background: #f8fafc;
+    color: var(--text);
+}
+
+#customerModal .form-group input:focus,
+#customerModal .form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+[data-theme="dark"] #customerModal .form-group input,
+[data-theme="dark"] #customerModal .form-group select {
+    background: #0f172a;
+    color: #f1f5f9;
+    border-color: #334155;
+}
+
+[data-theme="dark"] #customerModal .form-group input:focus,
+[data-theme="dark"] #customerModal .form-group select:focus {
+    background: #0f172a;
+    border-color: #6366f1;
+}
+
+/* ============================================================
+   BOTONES DE ACCIÓN EN TABLA
+   ============================================================ */
+.table .btn-sm {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+.table .btn-outline-primary,
+.table .btn-outline-secondary,
+.table .btn-outline-danger {
+    border-width: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #customerModal .modal-box {
+        max-width: calc(100vw - 24px) !important;
+        margin: 12px;
+    }
+}

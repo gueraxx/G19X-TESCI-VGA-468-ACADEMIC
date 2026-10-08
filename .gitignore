@@ -72,3 +72,11 @@ docs/_site/
 
 # Configuración de IA con credenciales
 config/ai.local.php
+
+# ============================================================
+# Variables de entorno
+# ============================================================
+.env
+.env.local
+.env.*.local
+!.env.example
