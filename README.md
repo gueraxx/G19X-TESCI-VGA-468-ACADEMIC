@@ -3,7 +3,7 @@
 > **Plataforma Inteligente de Cliente** — PluriOne
 > Proyecto de desarrollo de una solución Customer 360 con IA para unificar la visión del cliente.
 
-![Status](https://img.shields.io/badge/status-MVP%20funcional-success)
+![Status](https://img.shields.io/badge/status-En%20desarrollo-yellow)
 ![PHP](https://img.shields.io/badge/PHP-8%2B-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)
@@ -16,7 +16,7 @@
 ## 📋 Tabla de Contenidos
 
 - [Descripción](#-descripción)
-- [Demo en Vivo](#-demo-en-vivo)
+- [Demo](#-demo)
 - [Credenciales de Prueba](#-credenciales-de-prueba)
 - [Características](#-características)
 - [Stack Tecnológico](#-stack-tecnológico)
@@ -26,21 +26,19 @@
 - [Uso](#-uso)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Base de Datos](#-base-de-datos)
-- [Capturas de Pantalla](#-capturas-de-pantalla)
 - [Documentación](#-documentación)
 - [Roadmap](#-roadmap)
-- [Equipo](#-equipo)
 - [Licencia](#-licencia)
 
 ---
 
 ## 📖 Descripción
 
-**Customer 360** es una plataforma web que consolida una visión unificada del cliente integrando información de **CRM, ERP, ventas, marketing y soporte**. Utiliza inteligencia artificial para generar:
+**Customer 360** es una plataforma web que consolida una visión unificada del cliente integrando información de **CRM, ERP, ventas, marketing y soporte**. Utiliza inteligencia artificial generativa para producir:
 
 - 👤 **Perfiles unificados 360°** del cliente
 - 🔮 **Predicción de abandono** (churn)
-- 🎯 **Recomendaciones personalizadas con IA generativa** (upsell, cross-sell, retención)
+- 🎯 **Recomendaciones personalizadas con IA** (upsell, cross-sell, retención)
 - 🧩 **Segmentación automática** por valor de cliente
 - 📊 **Dashboards ejecutivos** con KPIs en tiempo real
 
@@ -54,15 +52,17 @@ Una plataforma web unificada que centraliza todos los datos del cliente, aplica 
 
 ---
 
-## 🌐 Demo en Vivo
+## 🌐 Demo
 
-🔗 **URL de la demo:** [http://customer360.infinityfreeapp.com](http://customer360.infinityfreeapp.com) _(ejemplo — actualiza con tu URL real)_
+🔗 **URL de la demo:** _(pendiente de despliegue en InfinityFree)_
+
+> ⚠️ **Nota:** la URL pública se agregará una vez que el proyecto esté desplegado. Mientras tanto, se puede ejecutar localmente con XAMPP siguiendo las instrucciones de instalación.
 
 ---
 
 ## 🔐 Credenciales de Prueba
 
-El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenciales para probar cada uno:
+El sistema cuenta con **4 roles** con permisos diferenciados:
 
 | Rol | Email | Contraseña | Permisos |
 |-----|-------|-----------|----------|
@@ -71,7 +71,8 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 | 🟢 **Sales** | `sales@customer360.com` | `sales123` | Clientes, recomendaciones, edición |
 | ⚪ **Viewer** | `viewer@customer360.com` | `viewer123` | Solo lectura |
 
-> 💡 **Nota:** Puedes crear más usuarios desde `/usuarios.php` (solo como Admin).
+> 💡 **Nota:** Estas credenciales son para fines de prueba y evaluación. En producción se deben cambiar.
+> Puedes crear más usuarios desde `/usuarios.php` (solo como Admin).
 
 ### Matriz de permisos
 
@@ -97,11 +98,12 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 - KPIs animados: total clientes, activos, churn alto, ingresos
 - 4 gráficos interactivos: segmentos, interacciones, evolución de ingresos, canales
 - Top 5 clientes por LTV
-- Actividad reciente en tiempo real
+- Actividad reciente
 
 ### 👥 Gestión de Clientes
-- Listado paginado con búsqueda instantánea
-- Filtros por segmento, industria y estado
+- Listado con búsqueda instantánea
+- Filtros por segmento y estado
+- CRUD completo (crear, editar, eliminar según rol)
 - Perfil 360° con datos completos
 
 ### 👤 Perfil 360°
@@ -113,7 +115,7 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 ### 🔮 Predicción de Churn
 - Algoritmo heurístico basado en múltiples factores
 - Clasificación automática: Bajo / Medio / Alto
-- Recalculo manual bajo demanda
+- Recalculo manual bajo demanda (admin/analyst)
 
 ### 🧩 Segmentación Automática
 - **Bronce:** LTV < $5,000
@@ -125,7 +127,7 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 - Integración con **Groq** (modelo `openai/gpt-oss-120b`)
 - Recomendaciones contextuales generadas por IA
 - Fallback automático a reglas de negocio si la IA falla
-- Caché inteligente para no gastar tokens repetidos
+- Caché inteligente (24h) para no gastar tokens repetidos
 - Badges visuales que distinguen IA vs Reglas
 
 ### 🔔 Notificaciones Inteligentes
@@ -142,7 +144,8 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 - Login con contraseñas hasheadas (bcrypt)
 - Sesiones PHP con expiración automática (8 horas)
 - Sistema de roles y permisos granular
-- Protección SQL injection (PDO preparado)
+- Consultas preparadas con PDO (previene SQL injection)
+- Validación de sesión en todas las APIs
 - Cambio de contraseña desde el menú de usuario
 
 ### 🌙 Extras
@@ -165,7 +168,6 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 | **IA** | Groq API (GPT-OSS 120B) |
 | **Servidor local** | Apache (XAMPP) |
 | **Control de versiones** | Git + GitHub |
-| **Hosting demo** | InfinityFree |
 
 ---
 
@@ -192,7 +194,7 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
                                 │   customer360     │
                                 └─────────┬─────────┘
                                           │
-                                          │ API REST
+                                          │ API REST (HTTPS)
                                 ┌─────────▼─────────┐
                                 │   Groq (IA)       │
                                 │   GPT-OSS 120B    │
@@ -209,6 +211,10 @@ El sistema cuenta con **4 roles** con permisos diferenciados. Usa estas credenci
 - **Git** (opcional)
 - **Navegador moderno** (Chrome, Firefox, Edge)
 
+### ⚠️ Nota sobre el nombre de la carpeta
+
+El código funciona con **cualquier nombre de carpeta** gracias al helper `basePath()` que detecta automáticamente la ruta base. Si tu carpeta se llama `customer360` o `G19X-TESCI-VGA-468-ACADEMIC`, el sistema se adapta.
+
 ### Paso 1: Clonar o descargar
 
 ```bash
@@ -216,7 +222,7 @@ cd C:\xampp\htdocs
 git clone https://github.com/TU-USUARIO/customer360.git
 ```
 
-O descarga el ZIP y descomprímelo en `C:\xampp\htdocs\customer360`.
+O descarga el ZIP y descomprímelo en `C:\xampp\htdocs\`.
 
 ### Paso 2: Arrancar servicios
 
@@ -227,10 +233,12 @@ O descarga el ZIP y descomprímelo en `C:\xampp\htdocs\customer360`.
 ### Paso 3: Importar la base de datos
 
 1. Abre [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-2. Crea una base de datos `customer360` (utf8mb4_unicode_ci)
+2. Crea una base de datos llamada `customer360` (utf8mb4_unicode_ci)
 3. Selecciónala → pestaña **Importar**
 4. Sube el archivo `database/customer360.sql`
 5. Clic en **Continuar**
+
+> 💡 El script SQL crea automáticamente las tablas `users`, `customers`, `transactions`, `interactions` y `ai_cache`, e inserta los datos de prueba (incluidos los 4 usuarios).
 
 ### Paso 4: Configurar variables de entorno
 
@@ -247,15 +255,18 @@ DB_NAME=customer360
 DB_USER=root
 DB_PASSWORD=
 GROQ_API_KEY=gsk_TU_CLAVE_AQUI
+GROQ_MODEL=openai/gpt-oss-120b
 ```
+
+> ⚠️ **Si usas un puerto distinto** (ej. 3308), asegúrate de ajustar `DB_PORT` en el `.env`.
 
 ### Paso 5: Obtener clave de Groq (IA)
 
-1. Regístrate en [https://console.groq.com/](https://console.groq.com/)
+1. Regístrate en [https://console.groq.com/](https://console.groq.com/) (gratis)
 2. Ve a **API Keys** → **Create API Key**
 3. Copia la clave y pégala en `.env` (`GROQ_API_KEY`)
 
-> 💡 Si no pones clave, el sistema usará **reglas de negocio** como fallback.
+> 💡 Si no pones clave, el sistema usará **reglas de negocio** como fallback y seguirá funcionando.
 
 ### Paso 6: Abrir en el navegador
 
@@ -280,7 +291,7 @@ Serás redirigido al login. Usa cualquiera de las credenciales de prueba. 🎉
 | `DB_NAME` | Nombre de la base de datos | ✅ |
 | `DB_USER` | Usuario de MySQL | ✅ |
 | `DB_PASSWORD` | Contraseña de MySQL | ✅ |
-| `GROQ_API_KEY` | Clave de Groq para IA | ✅ |
+| `GROQ_API_KEY` | Clave de Groq para IA | ⬜ |
 | `GROQ_MODEL` | Modelo de Groq | ⬜ |
 | `SESSION_LIFETIME_HOURS` | Duración de sesión | ⬜ |
 | `AI_CACHE_TTL_HOURS` | TTL de caché de IA | ⬜ |
@@ -298,7 +309,7 @@ Serás redirigido al login. Usa cualquiera de las credenciales de prueba. 🎉
 | **Login** | `/login.php` | Inicio de sesión | Público |
 | **Bienvenida** | `/bienvenida.php` | Landing page | Todos |
 | **Dashboard** | `/index.php` | KPIs y gráficos | Todos |
-| **Clientes** | `/customers.php` | Listado y búsqueda | Todos |
+| **Clientes** | `/customers.php` | Listado y CRUD | Todos (editar: admin/sales) |
 | **Perfil 360°** | `/customer-detail.php?id=1` | Vista unificada | Todos |
 | **Churn** | `/churn.php` | Clientes en riesgo | Admin, Analyst |
 | **Segmentos** | `/segmentos.php` | Análisis de segmentación | Admin, Analyst |
@@ -308,25 +319,28 @@ Serás redirigido al login. Usa cualquiera de las credenciales de prueba. 🎉
 
 ### Endpoints API
 
-| Endpoint | Método | Descripción |
-|----------|:------:|-------------|
-| `/api/auth.php?action=login` | POST | Iniciar sesión |
-| `/api/auth.php?action=logout` | POST | Cerrar sesión |
-| `/api/auth.php?action=check` | GET | Verificar autenticación |
-| `/api/auth.php?action=change-password` | POST | Cambiar contraseña |
-| `/api/dashboard.php` | GET | KPIs y datos del dashboard |
-| `/api/customers.php` | GET | Listado de clientes |
-| `/api/customers.php?id=1` | GET | Perfil 360° del cliente |
-| `/api/churn.php` | GET | Clientes con riesgo |
-| `/api/churn.php?action=recalculate` | POST | Recalcular churn |
-| `/api/segments.php` | GET | Estadísticas de segmentos |
-| `/api/segments.php?action=recalculate` | POST | Recalcular segmentos |
-| `/api/recommendations-list.php` | GET | Recomendaciones de todos |
-| `/api/recommendations.php?id=1` | GET | Recomendaciones de un cliente |
-| `/api/reports.php` | GET | Resumen general |
-| `/api/reports.php?type=customers&format=csv` | GET | Exportar CSV |
-| `/api/notifications.php` | GET | Notificaciones del sistema |
-| `/api/users.php` | GET/POST/PUT/DELETE | Gestión de usuarios (admin) |
+| Endpoint | Método | Descripción | Auth |
+|----------|:------:|-------------|:----:|
+| `/api/auth.php?action=login` | POST | Iniciar sesión | ❌ |
+| `/api/auth.php?action=logout` | POST | Cerrar sesión | ✅ |
+| `/api/auth.php?action=check` | GET | Verificar autenticación | ❌ |
+| `/api/auth.php?action=change-password` | POST | Cambiar contraseña | ✅ |
+| `/api/dashboard.php` | GET | KPIs y datos del dashboard | ✅ |
+| `/api/customers.php` | GET | Listado de clientes | ✅ |
+| `/api/customers.php?id=1` | GET | Perfil 360° del cliente | ✅ |
+| `/api/customers.php` | POST | Crear cliente | ✅ (admin/sales) |
+| `/api/customers.php?id=1` | PUT | Actualizar cliente | ✅ (admin/sales) |
+| `/api/customers.php?id=1` | DELETE | Eliminar cliente | ✅ (admin) |
+| `/api/churn.php` | GET | Clientes con riesgo | ✅ |
+| `/api/churn.php?action=recalculate` | POST | Recalcular churn | ✅ (admin/analyst) |
+| `/api/segments.php` | GET | Estadísticas de segmentos | ✅ |
+| `/api/segments.php?action=recalculate` | POST | Recalcular segmentos | ✅ (admin/analyst) |
+| `/api/recommendations-list.php` | GET | Recomendaciones de todos | ✅ |
+| `/api/recommendations.php?id=1` | GET | Recomendaciones de un cliente | ✅ |
+| `/api/reports.php` | GET | Resumen general | ✅ |
+| `/api/reports.php?type=customers&format=csv` | GET | Exportar CSV | ✅ |
+| `/api/notifications.php` | GET | Notificaciones del sistema | ✅ |
+| `/api/users.php` | GET/POST/PUT/DELETE | Gestión de usuarios | ✅ (admin) |
 
 ---
 
@@ -349,8 +363,8 @@ customer360/
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css            # Estilos principales
-│   │   └── print.css            # Estilos de impresión
+│   │   ├── style.css
+│   │   └── print.css
 │   └── js/
 │       ├── dashboard.js
 │       ├── customers.js
@@ -368,30 +382,34 @@ customer360/
 │       └── login.js
 │
 ├── config/
-│   ├── auth.php                 # Middleware de autenticación
+│   ├── auth.php                 # Middleware + basePath()
 │   ├── ai_cache.php             # Sistema de caché de IA
 │   ├── database.php             # Configuración BD
 │   └── database.local.php.example
 │
 ├── database/
-│   └── customer360.sql          # Script completo con datos
+│   └── customer360.sql          # Script completo con datos de prueba
 │
 ├── docs/                         # Documentación del proyecto
-│   ├── PRD.md
-│   ├── MVP.md
-│   ├── MANUAL.md
+│   ├── prd.md
+│   ├── mvp.md
+│   ├── arquitectura.md
+│   ├── manual-usuario.md
+│   ├── plan-pruebas.md
+│   ├── changelog.md
 │   └── screenshots/
 │
 ├── includes/
 │   ├── header.php
 │   └── footer.php
 │
-├── .env.example                  # Plantilla de variables
+├── .env.example
 ├── .gitignore
 ├── README.md
+├── accesos.md                    # 🔒 NO se sube (en .gitignore)
 ├── login.php
 ├── bienvenida.php
-├── index.php                     # Dashboard
+├── index.php
 ├── customers.php
 ├── customer-detail.php
 ├── churn.php
@@ -405,81 +423,24 @@ customer360/
 
 ## 🗄️ Base de Datos
 
-### Diagrama
+### Tablas
 
 ```
-┌──────────────────┐
-│    customers     │
-├──────────────────┤
-│ id (PK)          │
-│ external_id      │
-│ first_name       │
-│ last_name        │
-│ email            │
-│ phone            │
-│ company          │
-│ industry         │
-│ country          │
-│ city             │
-│ segment          │
-│ lifetime_value   │
-│ churn_risk       │
-│ status           │
-└────────┬─────────┘
-         │ 1:N
-         │
-┌────────▼─────────┐  ┌──────────────────┐
-│  transactions    │  │  interactions    │
-├──────────────────┤  ├──────────────────┤
-│ id (PK)          │  │ id (PK)          │
-│ customer_id (FK) │  │ customer_id (FK) │
-│ amount           │  │ type             │
-│ channel          │  │ source           │
-│ status           │  │ subject          │
-│ transaction_date │  │ sentiment        │
-└──────────────────┘  │ occurred_at      │
-                      └──────────────────┘
-
-┌──────────────────┐  ┌──────────────────┐
-│      users       │  │    ai_cache      │
-├──────────────────┤  ├──────────────────┤
-│ id (PK)          │  │ id (PK)          │
-│ email            │  │ cache_key        │
-│ password_hash    │  │ response (JSON)  │
-│ full_name        │  │ model            │
-│ role             │  │ hits             │
-│ is_active        │  │ expires_at       │
-└──────────────────┘  └──────────────────┘
+customers          → Clientes
+transactions       → Compras/transacciones
+interactions       → Llamadas, emails, tickets
+users              → Usuarios del sistema con roles
+ai_cache           → Caché de recomendaciones IA
 ```
 
-### Datos de prueba
+### Datos de prueba incluidos
 
-El script `customer360.sql` incluye:
+El script `database/customer360.sql` incluye:
 - ✅ **5 clientes** con diferentes segmentos
 - ✅ **7 transacciones** distribuidas en el tiempo
 - ✅ **5 interacciones** de distintos tipos
-- ✅ **4 usuarios** (uno por rol)
-
----
-
-## 📸 Capturas de Pantalla
-
-> Añade tus capturas reales en `docs/screenshots/`
-
-### Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
-
-### Perfil 360°
-![Perfil 360](docs/screenshots/customer-detail.png)
-
-### Recomendaciones IA
-![Recomendaciones](docs/screenshots/recomendaciones.png)
-
-### Modo Oscuro
-![Dark Mode](docs/screenshots/dark-mode.png)
-
-### Login
-![Login](docs/screenshots/login.png)
+- ✅ **4 usuarios** (uno por cada rol)
+- ✅ **0 registros** en `ai_cache` (se llena automáticamente)
 
 ---
 
@@ -487,19 +448,22 @@ El script `customer360.sql` incluye:
 
 | Documento | Descripción |
 |-----------|-------------|
-| [PRD](docs/PRD.md) | Product Requirements Document |
-| [MVP](docs/MVP.md) | Minimum Viable Product |
-| [Manual de Usuario](docs/MANUAL.md) | Guía de uso paso a paso |
+| [PRD](docs/prd.md) | Product Requirements Document |
+| [MVP](docs/mvp.md) | Minimum Viable Product |
+| [Arquitectura](docs/arquitectura.md) | Documento de arquitectura técnica |
+| [Manual de Usuario](docs/manual-usuario.md) | Guía de uso paso a paso |
+| [Plan de Pruebas](docs/plan-pruebas.md) | QA y testing |
+| [Changelog](docs/changelog.md) | Historial de versiones |
 
 ---
 
 ## 🗺️ Roadmap
 
-### ✅ MVP v1.0 (actual)
+### ✅ v1.0 (actual)
 
 - Login con roles y permisos
 - Dashboard con 4 gráficos
-- Gestión de clientes
+- CRUD de clientes
 - Perfil 360° con timeline
 - Predicción de churn
 - Segmentación automática
@@ -518,21 +482,7 @@ El script `customer360.sql` incluye:
 - Notificaciones por email
 - Multi-idioma
 - Chatbot con IA
-
----
-
-## 👥 Equipo
-
-| Rol | Nombre | Responsabilidad |
-|-----|--------|-----------------|
-| **Product Owner** | [Tu nombre] | Priorización del backlog |
-| **Scrum Master** | [Nombre] | Facilitación del equipo |
-| **Dev Backend** | [Tu nombre] | APIs, BD, integraciones |
-| **Dev Frontend** | [Nombre] | Interfaz, UX |
-| **Data/IA** | [Nombre] | Modelos, recomendaciones |
-| **QA** | [Nombre] | Pruebas, validaciones |
-
-**Metodología:** Scrum con sprints de 2 semanas.
+- Paginación server-side
 
 ---
 
@@ -562,17 +512,6 @@ Todos los derechos reservados © 2025.
 
 ---
 
-## 📚 Documentación
-
-| Documento | Descripción |
-|-----------|-------------|
-| [PRD](docs/prd.md) | Product Requirements Document |
-| [MVP](docs/mvp.md) | Minimum Viable Product |
-| [Arquitectura](docs/arquitectura.md) | Documento de arquitectura técnica |
-| [Manual de Usuario](docs/manual-usuario.md) | Guía de uso paso a paso |
-| [Plan de Pruebas](docs/plan-pruebas.md) | QA y testing |
-| [Changelog](docs/changelog.md) | Historial de versiones |
-
 ## 🙏 Agradecimientos
 
 - **PluriOne** por la oportunidad del proyecto
@@ -587,5 +526,6 @@ Todos los derechos reservados © 2025.
 
 **⭐ Si este proyecto te fue útil, dale una estrella en GitHub ⭐**
 
+Hecho con ❤️ por el equipo de Customer 360
 
 </div>

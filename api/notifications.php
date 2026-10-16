@@ -1,5 +1,16 @@
 <?php
+session_start();
+
+// ============================================================
+// Validación de sesión
+// ============================================================
+require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/database.php';
+
+// Verificar sesión activa
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    jsonResponse(['error' => 'No autorizado'], 401);
+}
 
 try {
     $db = getDB();
@@ -108,7 +119,7 @@ try {
     }
 
     // ============================================================
-    // Ordenar por prioridad y fecha
+    // Ordenar por prioridad
     // ============================================================
     usort($notifications, function($a, $b) {
         return $a['priority'] - $b['priority'];
@@ -118,7 +129,7 @@ try {
     $notifications = array_slice($notifications, 0, 15);
 
     // Contadores
-    $unread = count($notifications);
+    $total = count($notifications);
     $byType = [
         'danger' => count(array_filter($notifications, fn($n) => $n['type'] === 'danger')),
         'warning' => count(array_filter($notifications, fn($n) => $n['type'] === 'warning')),
@@ -127,14 +138,15 @@ try {
     ];
 
     jsonResponse([
-        'total' => $unread,
+        'total' => $total,
         'byType' => $byType,
         'notifications' => $notifications,
         'generatedAt' => date('Y-m-d H:i:s')
     ]);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }
 
 // ============================================================

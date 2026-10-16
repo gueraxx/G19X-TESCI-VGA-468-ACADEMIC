@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once __DIR__ . '/../config/database.php';
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
@@ -24,29 +25,30 @@ try {
         $user = $stmt->fetch();
 
         if (!$user || !password_verify($password, $user['password_hash'])) {
-            // Delay para prevenir ataques de fuerza bruta
+            // Delay anti fuerza bruta
             usleep(300000);
             jsonResponse(['error' => 'Credenciales incorrectas'], 401);
         }
 
         // Actualizar último login
-        $db->prepare("UPDATE users SET last_login = NOW() WHERE id = ?")->execute([$user['id']]);
+        $db->prepare("UPDATE users SET last_login = NOW() WHERE id = ?")
+           ->execute([$user['id']]);
 
         // Crear sesión
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_id']    = $user['id'];
         $_SESSION['user_email'] = $user['email'];
-        $_SESSION['user_name'] = $user['full_name'];
-        $_SESSION['user_role'] = $user['role'];
-        $_SESSION['logged_in'] = true;
+        $_SESSION['user_name']  = $user['full_name'];
+        $_SESSION['user_role']  = $user['role'];
+        $_SESSION['logged_in']  = true;
         $_SESSION['login_time'] = time();
 
         jsonResponse([
             'ok' => true,
             'user' => [
-                'id' => $user['id'],
-                'email' => $user['email'],
+                'id'        => $user['id'],
+                'email'     => $user['email'],
                 'full_name' => $user['full_name'],
-                'role' => $user['role']
+                'role'      => $user['role']
             ]
         ], 200, 'Login exitoso');
     }
@@ -61,17 +63,17 @@ try {
     }
 
     // ============================================================
-    // CHECK (verificar si está autenticado)
+    // CHECK
     // ============================================================
     if ($action === 'check') {
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
             jsonResponse([
                 'authenticated' => true,
                 'user' => [
-                    'id' => $_SESSION['user_id'],
-                    'email' => $_SESSION['user_email'],
+                    'id'        => $_SESSION['user_id'],
+                    'email'     => $_SESSION['user_email'],
                     'full_name' => $_SESSION['user_name'],
-                    'role' => $_SESSION['user_role']
+                    'role'      => $_SESSION['user_role']
                 ]
             ]);
         }
@@ -88,7 +90,7 @@ try {
 
         $input = json_decode(file_get_contents('php://input'), true);
         $currentPassword = $input['current_password'] ?? '';
-        $newPassword = $input['new_password'] ?? '';
+        $newPassword     = $input['new_password'] ?? '';
 
         if (strlen($newPassword) < 6) {
             jsonResponse(['error' => 'La nueva contraseña debe tener al menos 6 caracteres'], 400);
@@ -98,7 +100,7 @@ try {
         $stmt->execute([$_SESSION['user_id']]);
         $user = $stmt->fetch();
 
-        if (!password_verify($currentPassword, $user['password_hash'])) {
+        if (!$user || !password_verify($currentPassword, $user['password_hash'])) {
             jsonResponse(['error' => 'Contraseña actual incorrecta'], 401);
         }
 
@@ -112,5 +114,6 @@ try {
     jsonResponse(['error' => 'Acción no válida'], 400);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('[api/auth.php] Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }

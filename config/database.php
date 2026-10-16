@@ -11,6 +11,7 @@
 // ============================================================
 function loadEnv($path) {
     if (!file_exists($path)) return;
+
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
         $line = trim($line);
@@ -30,14 +31,16 @@ function loadEnv($path) {
 
 loadEnv(__DIR__ . '/../.env');
 
-// Helper para leer variables con default
+// ============================================================
+// Helper para leer variables de entorno con default
+// ============================================================
 function env($key, $default = null) {
     $value = $_ENV[$key] ?? getenv($key);
     return ($value === false || $value === '') ? $default : $value;
 }
 
 // ============================================================
-// Configuración
+// Configuración de la conexión
 // ============================================================
 $config = [
     'host' => env('DB_HOST', '127.0.0.1'),
@@ -59,19 +62,36 @@ define('DB_NAME', $config['name']);
 define('DB_USER', $config['user']);
 define('DB_PASS', $config['pass']);
 
+// ============================================================
+// Conexión PDO
+// ============================================================
 function getDB() {
     try {
         $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+
         return new PDO($dsn, DB_USER, DB_PASS, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
+            PDO::ATTR_EMULATE_PREPARES   => false
         ]);
+
     } catch (PDOException $e) {
-        die(json_encode(['error' => 'Error de conexión: ' . $e->getMessage()]));
+        // ✅ Registrar el error real en el log del servidor
+        error_log('[config/database.php] Error de conexión: ' . $e->getMessage());
+
+        // ✅ Devolver un mensaje genérico al cliente
+        if (!headers_sent()) {
+            http_response_code(500);
+            header('Content-Type: application/json; charset=utf-8');
+        }
+        echo json_encode(['error' => 'Error de conexión a la base de datos'], JSON_UNESCAPED_UNICODE);
+        exit;
     }
 }
 
+// ============================================================
+// Helper: respuesta JSON
+// ============================================================
 function jsonResponse($data, $code = 200) {
     http_response_code($code);
     header('Content-Type: application/json; charset=utf-8');

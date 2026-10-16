@@ -89,30 +89,30 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                 <div>
                     <strong>Credenciales de prueba: SALES</strong>
                     <div class="credential-row">
-                        <span>Email:</span> <code>sales@test.com</code>
+                        <span>Email:</span> <code>sales@customer360.com</code>
                     </div>
                     <div class="credential-row">
-                        <span>Contraseña:</span> <code>ventas</code>
+                        <span>Contraseña:</span> <code>sales123</code>
                     </div>
                 </div>
 
                 <div>
                     <strong>Credenciales de prueba: ANALISTA</strong>
                     <div class="credential-row">
-                        <span>Email:</span> <code>analyst@test.com</code>
+                        <span>Email:</span> <code>analyst@customer360.com</code>
                     </div>
                     <div class="credential-row">
-                        <span>Contraseña:</span> <code>analista</code>
+                        <span>Contraseña:</span> <code>analyst123</code>
                     </div>
                 </div>
 
                 <div>
                     <strong>Credenciales de prueba: VIEWER</strong>
                     <div class="credential-row">
-                        <span>Email:</span> <code>viewer@test.com</code>
+                        <span>Email:</span> <code>viewer@customer360.com</code>
                     </div>
                     <div class="credential-row">
-                        <span>Contraseña:</span> <code>vista</code>
+                        <span>Contraseña:</span> <code>viewer123</code>
                     </div>
                 </div>
             </div>

@@ -1,30 +1,27 @@
 <?php
 session_start();
+
+// ============================================================
+// Validación de sesión
+// ============================================================
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/ai_cache.php';
-if (!isset($_SESSION['logged_in'])) {
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     jsonResponse(['error' => 'No autorizado'], 401);
 }
 
 // ============================================================
-// CONFIGURACIÓN DE GROQ
+// CONFIGURACIÓN DE GROQ (lee del .env)
 // ============================================================
-// 💡 OPCIÓN A: Poner la clave directamente aquí (rápido pero NO seguro)
-// $groqApiKey = 'gsk_TU_CLAVE_AQUI';
-
-// 💡 OPCIÓN B (RECOMENDADA): Leer desde archivo protegido
-if (file_exists(__DIR__ . '/../config/ai.local.php')) {
-    $aiConfig = require __DIR__ . '/../config/ai.local.php';
-    $groqApiKey = $aiConfig['groq_api_key'] ?? '';
-    $modelo = $aiConfig['groq_model'] ?? 'llama-3.3-70b-versatile';
-} else {
-    // Sin archivo, la IA queda desactivada → solo reglas de negocio
-    $groqApiKey = '';
-    $modelo = 'llama-3.3-70b-versatile';
+function env($key, $default = null) {
+    return $_ENV[$key] ?? getenv($key) ?: $default;
 }
 
-$groqApiUrl = 'https://api.groq.com/openai/v1/chat/completions';
+$groqApiKey = env('GROQ_API_KEY', '');
+$modelo = env('GROQ_MODEL', 'openai/gpt-oss-120b');
+$groqApiUrl = env('GROQ_API_URL', 'https://api.groq.com/openai/v1/chat/completions');
 $usarIA = !empty($groqApiKey);
 
 // ============================================================
@@ -73,7 +70,7 @@ function generarRecomendacionesConReglas($c, $type) {
         ];
     }
 
-    // Cross-sell adicional: clientes con buen historial
+    // Cross-sell adicional
     if ($c['lifetime_value'] > 10000 && $c['churn_risk'] < 0.5) {
         $recs[] = [
             'type' => 'cross-sell',
@@ -176,7 +173,7 @@ REGLAS:
         return null;
     }
 
-    // Validar y normalizar
+    // Normalizar
     $iaRec['confidence'] = (float)($iaRec['confidence'] ?? 0.7);
     $iaRec['priority'] = $iaRec['priority'] ?? 'media';
     $iaRec['source'] = 'ai';
@@ -218,42 +215,41 @@ try {
     $recommendations = [];
     $iaUsada = 0;
     $reglasUsadas = 0;
-    $cacheHits = 0; 
+    $cacheHits = 0;
 
     foreach ($customers as $c) {
         $recs = null;
 
-        // Intentar con IA primero (si está configurada)
+        // Intentar con IA primero
         if ($usarIA && !$forceRules) {
-    // Generar clave de caché única por cliente + tipo + valores
-    $cacheKey = 'rec_' . md5(
-        $c['id'] . '|' .
-        $c['churn_risk'] . '|' .
-        $c['segment'] . '|' .
-        $c['lifetime_value'] . '|' .
-        $type . '|' .
-        $modelo
-    );
+            $cacheKey = 'rec_' . md5(
+                $c['id'] . '|' .
+                $c['churn_risk'] . '|' .
+                $c['segment'] . '|' .
+                $c['lifetime_value'] . '|' .
+                $type . '|' .
+                $modelo
+            );
 
-    // Intentar leer de caché
-    $cached = getAICache($cacheKey);
+            // Leer de caché
+            $cached = getAICache($cacheKey);
 
-    if ($cached !== null) {
-        $recs = $cached;
-        $iaUsada++;
-        $cacheHits++;
-    } else {
-        // No hay caché, llamar a la IA
-        $recs = generarRecomendacionesConIA($c, $type, $groqApiKey, $groqApiUrl, $modelo);
+            if ($cached !== null) {
+                $recs = $cached;
+                $iaUsada++;
+                $cacheHits++;
+            } else {
+                // Llamar a la IA
+                $recs = generarRecomendacionesConIA($c, $type, $groqApiKey, $groqApiUrl, $modelo);
 
-        if ($recs) {
-            setAICache($cacheKey, $recs, $modelo, 24);
-            $iaUsada++;
+                if ($recs) {
+                    setAICache($cacheKey, $recs, $modelo, 24);
+                    $iaUsada++;
+                }
+            }
         }
-    }
-}
 
-        // Si la IA falló o no está configurada, usar reglas
+        // Fallback a reglas
         if ($recs === null) {
             $recs = generarRecomendacionesConReglas($c, $type);
             $reglasUsadas++;
@@ -288,8 +284,8 @@ try {
         'iaEnabled' => $usarIA,
         'iaUsed' => $iaUsada,
         'rulesUsed' => $reglasUsadas,
-        'cacheHits' => $cacheHits,      
-    'cacheEnabled' => true,         
+        'cacheHits' => $cacheHits,
+        'cacheEnabled' => true,
         'modelo' => $usarIA ? $modelo : 'rules-only',
         'byType' => [
             'upsell' => count(array_filter($allRecs, fn($r) => $r['type'] === 'upsell')),
@@ -304,5 +300,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }

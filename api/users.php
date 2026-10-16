@@ -120,5 +120,6 @@ try {
     jsonResponse(['error' => 'Acción no válida'], 400);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }

@@ -1,23 +1,43 @@
 <?php
 session_start();
+
+// ============================================================
+// Validación de sesión y permisos
+// ============================================================
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/database.php';
 
-try {
-    $db = getDB();
+// Verificar sesión activa
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    jsonResponse(['error' => 'No autorizado'], 401);
+}
+
+// Cualquiera autenticado puede VER, solo admin/analyst pueden recalcular
 $action = $_GET['action'] ?? '';
 if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
     jsonResponse(['error' => 'No tienes permisos para recalcular segmentos'], 403);
 }
-    // POST ?action=recalculate → recalcular todos los segmentos
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_GET['action'] ?? '') === 'recalculate') {
+
+try {
+    $db = getDB();
+
+    // ============================================================
+    // POST ?action=recalculate — Recalcular segmentos (admin/analyst)
+    // ============================================================
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'recalculate') {
         $customers = $db->query("SELECT id FROM customers")->fetchAll();
+        $count = 0;
 
         foreach ($customers as $c) {
-            $stmt = $db->prepare("SELECT COALESCE(SUM(amount),0) FROM transactions WHERE customer_id = ? AND status='completed'");
+            $stmt = $db->prepare("
+                SELECT COALESCE(SUM(amount), 0)
+                FROM transactions
+                WHERE customer_id = ? AND status = 'completed'
+            ");
             $stmt->execute([$c['id']]);
             $total = (float)$stmt->fetchColumn();
 
+            // Clasificación por LTV
             $segment = 'bronze';
             if ($total >= 50000) $segment = 'platinum';
             elseif ($total >= 20000) $segment = 'gold';
@@ -25,11 +45,15 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
 
             $db->prepare("UPDATE customers SET segment = ?, lifetime_value = ? WHERE id = ?")
                ->execute([$segment, $total, $c['id']]);
+            $count++;
         }
-        jsonResponse(['ok' => true, 'recalculated' => count($customers)]);
+
+        jsonResponse(['ok' => true, 'recalculated' => $count]);
     }
 
-    // GET → estadísticas de segmentos
+    // ============================================================
+    // GET — Estadísticas de segmentos
+    // ============================================================
     $segments = $db->query("
         SELECT
             segment,
@@ -39,9 +63,12 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
             COALESCE(AVG(churn_risk), 0) as avg_churn
         FROM customers
         GROUP BY segment
+        ORDER BY FIELD(segment, 'platinum', 'gold', 'silver', 'bronze')
     ")->fetchAll();
 
-    // Por industria
+    // ============================================================
+    // Distribución por industria (top 10)
+    // ============================================================
     $industries = $db->query("
         SELECT industry, COUNT(*) as count
         FROM customers
@@ -51,7 +78,9 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
         LIMIT 10
     ")->fetchAll();
 
-    // Top clientes por LTV
+    // ============================================================
+    // Top 10 clientes por LTV
+    // ============================================================
     $topCustomers = $db->query("
         SELECT id, first_name, last_name, company, segment, lifetime_value, churn_risk
         FROM customers
@@ -59,7 +88,9 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
         LIMIT 10
     ")->fetchAll();
 
-    // Distribución por país
+    // ============================================================
+    // Distribución por país (top 10)
+    // ============================================================
     $countries = $db->query("
         SELECT country, COUNT(*) as count
         FROM customers
@@ -69,6 +100,9 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
         LIMIT 10
     ")->fetchAll();
 
+    // ============================================================
+    // Respuesta
+    // ============================================================
     jsonResponse([
         'segments' => $segments,
         'industries' => $industries,
@@ -77,5 +111,6 @@ if ($action === 'recalculate' && !hasRole('admin', 'analyst')) {
     ]);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }

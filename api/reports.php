@@ -1,9 +1,13 @@
 <?php
 session_start();
+
+// ============================================================
+// Validación de sesión
+// ============================================================
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/database.php';
 
-if (!isset($_SESSION['logged_in'])) {
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     jsonResponse(['error' => 'No autorizado'], 401);
 }
 
@@ -13,7 +17,9 @@ try {
     $type = $_GET['type'] ?? 'summary';
     $format = $_GET['format'] ?? 'json';
 
+    // ============================================================
     // Reporte de clientes
+    // ============================================================
     if ($type === 'customers') {
         $data = $db->query("
             SELECT
@@ -30,7 +36,9 @@ try {
         jsonResponse(['data' => $data]);
     }
 
+    // ============================================================
     // Reporte de transacciones
+    // ============================================================
     if ($type === 'transactions') {
         $data = $db->query("
             SELECT
@@ -49,7 +57,9 @@ try {
         jsonResponse(['data' => $data]);
     }
 
+    // ============================================================
     // Reporte de churn
+    // ============================================================
     if ($type === 'churn') {
         $data = $db->query("
             SELECT
@@ -72,7 +82,9 @@ try {
         jsonResponse(['data' => $data]);
     }
 
-    // Reporte resumen general
+    // ============================================================
+    // Reporte resumen general (default)
+    // ============================================================
     $totalRevenue = $db->query("SELECT COALESCE(SUM(amount),0) FROM transactions WHERE status='completed'")->fetchColumn();
     $totalCustomers = $db->query("SELECT COUNT(*) FROM customers")->fetchColumn();
     $avgLTV = $db->query("SELECT COALESCE(AVG(lifetime_value),0) FROM customers")->fetchColumn();
@@ -85,11 +97,13 @@ try {
                COALESCE(AVG(churn_risk),0) as avg_churn
         FROM customers
         GROUP BY segment
+        ORDER BY FIELD(segment, 'platinum', 'gold', 'silver', 'bronze')
     ")->fetchAll();
 
     $monthlyRevenue = $db->query("
         SELECT
             DATE_FORMAT(transaction_date, '%Y-%m') as month,
+            DATE_FORMAT(transaction_date, '%b %Y') as month_label,
             COUNT(*) as transactions,
             SUM(amount) as revenue
         FROM transactions
@@ -100,10 +114,11 @@ try {
     ")->fetchAll();
 
     $byChannel = $db->query("
-        SELECT channel, COUNT(*) as count, SUM(amount) as revenue
+        SELECT channel, COUNT(*) as count, COALESCE(SUM(amount),0) as revenue
         FROM transactions
         WHERE status='completed'
         GROUP BY channel
+        ORDER BY revenue DESC
     ")->fetchAll();
 
     jsonResponse([
@@ -120,19 +135,25 @@ try {
     ]);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }
 
+// ============================================================
 // Helper: descargar CSV
+// ============================================================
 function outputCSV($data, $filename) {
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename="' . $filename . '"');
 
     $output = fopen('php://output', 'w');
-    fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF)); // BOM UTF-8 para Excel
+    // BOM UTF-8 para Excel
+    fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
     if (!empty($data)) {
+        // Encabezados
         fputcsv($output, array_keys($data[0]));
+        // Filas
         foreach ($data as $row) {
             fputcsv($output, $row);
         }

@@ -1,5 +1,11 @@
 <?php
+session_start();
+require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/database.php';
+
+if (!isset($_SESSION['logged_in'])) {
+    jsonResponse(['error' => 'No autorizado'], 401);
+}
 
 try {
     $db = getDB();
@@ -103,5 +109,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    jsonResponse(['error' => $e->getMessage()], 500);
+    error_log('API Error: ' . $e->getMessage());
+    jsonResponse(['error' => 'Error interno del servidor'], 500);
 }
