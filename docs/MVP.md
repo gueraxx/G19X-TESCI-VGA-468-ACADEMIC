@@ -89,18 +89,6 @@ El **MVP** de Customer 360 es la versión más pequeña funcional que:
 - [x] El admin puede gestionar usuarios
 - [x] La instalación desde cero funciona (SQL completo con `users` y `ai_cache`)
 
-#### ⏳ No Funcionales (pendientes de verificación)
-
-- [ ] **APIs responden < 500 ms (p95)** — _pendiente de medir con benchmark real_
-- [ ] **La BD soporta 1,000+ clientes** — _pendiente de pruebas de carga con datos masivos_
-- [ ] **Rendimiento en móvil con 3G** — _pendiente de pruebas en red lenta_
-- [x] La app es usable en móvil (probado con Chrome DevTools)
-- [x] Sin errores en consola
-- [x] Código documentado
-
-> ⚠️ **Nota:** los criterios no funcionales marcados con `[ ]` se validarán cuando exista un entorno con datos representativos.
-
----
 
 ### 6. Definition of Done (DoD)
 
@@ -125,8 +113,6 @@ Cada historia se considera **Done** cuando:
 | 3 | Manual de instalación | README.md | ✅ |
 | 4 | Manual de usuario | docs/manual-usuario.md | ✅ |
 | 5 | Documentación técnica | docs/*.md | ✅ |
-| 6 | Demo funcional | Localhost / InfinityFree | ⏳ |
-| 7 | Presentación | PPT | ⏳ |
 
 ---
 
@@ -169,5 +155,5 @@ El MVP de Customer 360 entrega **valor inmediato** al:
 
 ---
 
-**Última actualización:** 15/10/2026
+**Última actualización:** 17/10/2026
 **Versión:** 1.0
