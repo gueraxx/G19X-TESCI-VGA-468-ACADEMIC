@@ -18,5 +18,5 @@ $id = (int)($_GET['id'] ?? 0);
 <script>
 const CUSTOMER_ID = <?= $id ?>;
 </script>
-<script src="/customer360/assets/js/customer-detail.js"></script>
+<script src="<?= basePath() ?>/assets/js/customer-detail.js"></script>
 <?php include 'includes/footer.php'; ?>

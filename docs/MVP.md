@@ -1,6 +1,6 @@
 # 🚀 MVP — Minimum Viable Product
 
-## Customer 360 — Versión 1.0
+## Customer 360 — Versión 1.1
 
 ---
 
@@ -75,32 +75,37 @@ El **MVP** de Customer 360 es la versión más pequeña funcional que:
 
 ### 5. Criterios de Aceptación del MVP
 
-#### ✅ Funcionales (probados)
+#### ✅ Funcionales (verificados después de instalación desde cero)
 
-- [x] Los 4 roles pueden autenticarse correctamente
-- [x] El dashboard muestra 4 KPIs + 4 gráficos
-- [x] El listado de clientes permite búsqueda
-- [x] El perfil 360° carga con datos completos
-- [x] El cálculo de churn clasifica correctamente
-- [x] Las recomendaciones se generan con IA (con fallback a reglas)
+- [x] La base de datos se crea correctamente desde `customer360.sql` (incluye `users` y `ai_cache`)
+- [x] Los 4 usuarios de prueba pueden iniciar sesión
+- [x] El dashboard muestra los KPIs y los 4 gráficos sin errores
+- [x] El listado de clientes permite buscar y filtrar
+- [x] El perfil 360° carga con datos y timeline
+- [x] El cálculo de churn funciona y clasifica correctamente
 - [x] La segmentación se recalcula sin errores
 - [x] Los CSV y PDF se exportan correctamente
-- [x] Las notificaciones funcionan en tiempo real
+- [x] Las notificaciones cargan
 - [x] El admin puede gestionar usuarios
-- [x] La instalación desde cero funciona (SQL completo con `users` y `ai_cache`)
 
+#### ⏳ Pendientes / En verificación
+
+- [ ] **Las recomendaciones con IA generan resultados sin errores fatales** (se detectó un conflicto con `env()` en el corte 2, corregido en la v1.1)
+- [ ] **Todas las rutas son relativas** (se están reemplazando las rutas fijas `/customer360/` por `basePath()`)
+- [ ] **No hay errores en consola** en todos los flujos (pendiente de prueba exhaustiva con las correcciones aplicadas)
+
+---
 
 ### 6. Definition of Done (DoD)
 
 Cada historia se considera **Done** cuando:
 
-- ✅ Código implementado y funcionando
-- ✅ Sin errores en consola (frontend/backend)
-- ✅ Probado en Chrome y Firefox
-- ✅ Responsive en móvil (viewport 375px)
-- ✅ Código comentado en español
-- ✅ Commiteado a GitHub con mensaje descriptivo
-- ✅ Documentado en README y docs/
+- ✅ El código está implementado
+- ✅ Funciona en el flujo principal probado manualmente
+- ✅ Es responsive (verificado en vista móvil 375px)
+- ✅ El código está comentado en español
+- ✅ Está commiteado a GitHub con mensaje descriptivo
+- ✅ Está documentado en README y docs/
 
 ---
 
@@ -113,6 +118,8 @@ Cada historia se considera **Done** cuando:
 | 3 | Manual de instalación | README.md | ✅ |
 | 4 | Manual de usuario | docs/manual-usuario.md | ✅ |
 | 5 | Documentación técnica | docs/*.md | ✅ |
+| 6 | Demo funcional | URL en vivo (InfinityFree) | ⏳ Pendiente |
+| 7 | Presentación | PPT | ⏳ Pendiente |
 
 ---
 
@@ -155,5 +162,5 @@ El MVP de Customer 360 entrega **valor inmediato** al:
 
 ---
 
-**Última actualización:** 17/10/2026
-**Versión:** 1.0
+**Última actualización:** 20/10/2026
+**Versión:** 1.1

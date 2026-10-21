@@ -3,7 +3,8 @@ session_start();
 
 // Si ya está logueado, redirigir al dashboard
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    header('Location: /customer360/index.php');
+    require_once __DIR__ . '/config/auth.php';
+header('Location: ' . basePath() . '/index.php');
     exit;
 }
 ?>
@@ -24,7 +25,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/customer360/assets/css/style.css?v=100" rel="stylesheet">
+    <link href="<?= basePath() ?>/assets/css/style.css?v=100" rel="stylesheet">
 </head>
 <body class="login-page">
 
@@ -134,6 +135,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </div>
 </div>
 
-<script src="/customer360/assets/js/login.js?v=1"></script>
+<script src="<?= basePath() ?>/assets/js/login.js?v=1"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config/auth.php';
+requireLogin();
 requireRole('admin', 'analyst');
 $pageTitle = 'Segmentos';
 include 'includes/header.php';
@@ -97,5 +98,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/segments.js?v=<?= time() ?>" defer></script>
+<script src="<?= basePath() ?>/assets/js/segments.js?v=<?= time() ?>" defer></script>
 <?php include 'includes/footer.php'; ?>

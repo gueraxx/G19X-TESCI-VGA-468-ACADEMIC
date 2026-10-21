@@ -153,5 +153,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/customers.js?v=<?= time() ?>" defer></script>
+<script src="<?= basePath() ?>/assets/js/customers.js?v=<?= time() ?>" defer></script>
 <?php include 'includes/footer.php'; ?>

@@ -144,7 +144,7 @@ include 'includes/header.php';
                     <h5><i class="bi bi-trophy text-warning"></i> Top 5 Clientes por LTV</h5>
                     <small>Los clientes más valiosos</small>
                 </div>
-                <a href="/customer360/segmentos.php" class="btn btn-sm btn-outline-primary">
+                <a href="<?= basePath() ?>/segmentos.php" class="btn btn-sm btn-outline-primary">
                     Ver todos <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -189,5 +189,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/dashboard.js?v=5" defer></script>
+<script src="<?= basePath() ?>/assets/js/dashboard.js?v=5" defer></script>
 <?php include 'includes/footer.php'; ?>

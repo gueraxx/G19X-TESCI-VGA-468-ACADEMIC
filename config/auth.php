@@ -25,7 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * Devuelve el base path del proyecto.
  * 
  * Ejemplos:
- *   http://localhost/customer360/index.php  → '/customer360'
+ *   http://localhost<?= basePath() ?>/index.php  → '/customer360'
  *   http://localhost/index.php              → ''
  *   http://midominio.com/G19X-TESCI/index.php → '/G19X-TESCI'
  * 

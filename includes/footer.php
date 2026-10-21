@@ -99,10 +99,10 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/customer360/assets/js/theme.js"></script>
-<script src="/customer360/assets/js/notifications.js?v=1"></script>
-<script src="/customer360/assets/js/export.js?v=1"></script>
-<script src="/customer360/assets/js/user-menu.js?v=1"></script>
-<script src="/customer360/assets/js/permissions.js?v=1"></script>
+<script src="<?= basePath() ?>/assets/js/theme.js"></script>
+<script src="<?= basePath() ?>/assets/js/notifications.js?v=1"></script>
+<script src="<?= basePath() ?>/assets/js/export.js?v=1"></script>
+<script src="<?= basePath() ?>/assets/js/user-menu.js?v=1"></script>
+<script src="<?= basePath() ?>/assets/js/permissions.js?v=1"></script>
 </body>
 </html>

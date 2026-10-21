@@ -64,13 +64,13 @@ include 'includes/header.php';
         </div>
     </div>
     <div class="d-flex flex-wrap gap-2">
-        <a href="/customer360/api/reports.php?type=customers&format=csv" class="btn btn-primary">
+        <a href="<?= basePath() ?>/api/reports.php?type=customers&format=csv" class="btn btn-primary">
             <i class="bi bi-file-earmark-spreadsheet"></i> Clientes (CSV)
         </a>
-        <a href="/customer360/api/reports.php?type=transactions&format=csv" class="btn btn-primary">
+        <a href="<?= basePath() ?>/api/reports.php?type=transactions&format=csv" class="btn btn-primary">
             <i class="bi bi-file-earmark-spreadsheet"></i> Transacciones (CSV)
         </a>
-        <a href="/customer360/api/reports.php?type=churn&format=csv" class="btn btn-primary">
+        <a href="<?= basePath() ?>/api/reports.php?type=churn&format=csv" class="btn btn-primary">
             <i class="bi bi-file-earmark-spreadsheet"></i> Churn (CSV)
         </a>
         <button class="btn btn-danger no-print" onclick="exportToPDF('Reporte Ejecutivo')">
@@ -142,5 +142,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/reports.js" defer></script>
+<script src="<?= basePath() ?>/assets/js/reports.js" defer></script>
 <?php include 'includes/footer.php'; ?>

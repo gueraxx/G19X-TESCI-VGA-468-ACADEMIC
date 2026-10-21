@@ -100,5 +100,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/recommendations.js?v=3" defer></script>
+<script src="<?= basePath() ?>/assets/js/recommendations.js?v=3" defer></script>
 <?php include 'includes/footer.php'; ?>

@@ -1,99 +1,104 @@
-(function() {
-    'use strict';
 // ============================================================
 // Customer 360 — Login
 // ============================================================
 
-console.log('🔐 login.js cargado');
+(function() {
+    'use strict';
 
-const form = document.getElementById('loginForm');
-const btn = document.getElementById('loginBtn');
-const errorBox = document.getElementById('loginError');
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
+    console.log('🔐 login.js cargado');
 
-// ============================================================
-// Toggle mostrar/ocultar contraseña
-// ============================================================
-togglePassword?.addEventListener('click', () => {
-    const isPassword = passwordInput.type === 'password';
-    passwordInput.type = isPassword ? 'text' : 'password';
-    togglePassword.innerHTML = isPassword
-        ? '<i class="bi bi-eye-slash"></i>'
-        : '<i class="bi bi-eye"></i>';
-});
+    // Base URL dinámica
+    const BASE_URL = window.location.pathname.replace(/\/[^/]*$/, '').replace(/\/$/, '');
 
-// ============================================================
-// Submit del formulario
-// ============================================================
-form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    const form = document.getElementById('loginForm');
+    const btn = document.getElementById('loginBtn');
+    const errorBox = document.getElementById('loginError');
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
 
-    const email = document.getElementById('email').value.trim();
-    const password = passwordInput.value;
+    // ============================================================
+    // Toggle mostrar/ocultar contraseña
+    // ============================================================
+    togglePassword?.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePassword.innerHTML = isPassword
+            ? '<i class="bi bi-eye-slash"></i>'
+            : '<i class="bi bi-eye"></i>';
+    });
 
-    // Reset errores
-    errorBox.style.display = 'none';
-    errorBox.textContent = '';
+    // ============================================================
+    // Submit del formulario
+    // ============================================================
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    // Loading
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Iniciando...';
+        const email = document.getElementById('email').value.trim();
+        const password = passwordInput.value;
 
-    try {
-        const res = await fetch('/customer360/api/auth.php?action=login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
+        // Reset errores
+        errorBox.style.display = 'none';
+        errorBox.textContent = '';
 
-        const data = await res.json();
+        // Loading
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Iniciando...';
 
-        if (!res.ok || data.error) {
-            showError(data.error || 'Error al iniciar sesión');
-            return;
+        try {
+            const res = await fetch(`${BASE_URL}/api/auth.php?action=login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok || data.error) {
+                showError(data.error || 'Error al iniciar sesión');
+                return;
+            }
+
+            // Éxito
+            btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> ¡Bienvenido!';
+            btn.classList.add('success');
+
+            // Redirigir usando BASE_URL dinámico
+            setTimeout(() => {
+                window.location.href = `${BASE_URL}/index.php`;
+            }, 800);
+
+        } catch (error) {
+            console.error('Error:', error);
+            showError('Error de conexión. Intenta de nuevo.');
         }
+    });
 
-        // Éxito
-        btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> ¡Bienvenido!';
-        btn.classList.add('success');
+    function showError(message) {
+        errorBox.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i> ${message}`;
+        errorBox.style.display = 'flex';
 
-        // Redirigir
-        setTimeout(() => {
-            window.location.href = '/customer360/index.php';
-        }, 800);
+        // Shake animation
+        errorBox.classList.add('shake');
+        setTimeout(() => errorBox.classList.remove('shake'), 500);
 
-    } catch (error) {
-        console.error('Error:', error);
-        showError('Error de conexión. Intenta de nuevo.');
+        // Restaurar botón
+        btn.disabled = false;
+        btn.innerHTML = '<span class="btn-text">Iniciar Sesión</span><i class="bi bi-arrow-right"></i>';
+
+        // Limpiar contraseña
+        passwordInput.value = '';
+        passwordInput.focus();
     }
-});
 
-function showError(message) {
-    errorBox.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i> ${message}`;
-    errorBox.style.display = 'flex';
+    // ============================================================
+    // Limpiar error al escribir
+    // ============================================================
+    document.getElementById('email')?.addEventListener('input', () => {
+        errorBox.style.display = 'none';
+    });
 
-    // Shake animation
-    errorBox.classList.add('shake');
-    setTimeout(() => errorBox.classList.remove('shake'), 500);
+    passwordInput?.addEventListener('input', () => {
+        errorBox.style.display = 'none';
+    });
 
-    // Restaurar botón
-    btn.disabled = false;
-    btn.innerHTML = '<span class="btn-text">Iniciar Sesión</span><i class="bi bi-arrow-right"></i>';
-
-    // Limpiar contraseña
-    passwordInput.value = '';
-    passwordInput.focus();
-}
-
-// ============================================================
-// Limpiar error al escribir
-// ============================================================
-document.getElementById('email')?.addEventListener('input', () => {
-    errorBox.style.display = 'none';
-});
-
-passwordInput?.addEventListener('input', () => {
-    errorBox.style.display = 'none';
-});
 })();

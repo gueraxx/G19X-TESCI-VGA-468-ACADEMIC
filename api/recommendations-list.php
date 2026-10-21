@@ -12,12 +12,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     jsonResponse(['error' => 'No autorizado'], 401);
 }
 
-// ============================================================
-// CONFIGURACIÓN DE GROQ (lee del .env)
-// ============================================================
-function env($key, $default = null) {
-    return $_ENV[$key] ?? getenv($key) ?: $default;
-}
+
 
 $groqApiKey = env('GROQ_API_KEY', '');
 $modelo = env('GROQ_MODEL', 'openai/gpt-oss-120b');

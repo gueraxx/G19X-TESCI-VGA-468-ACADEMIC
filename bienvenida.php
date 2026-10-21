@@ -22,10 +22,10 @@ include 'includes/header.php';
                 datos, no con intuición.
             </p>
             <div class="hero-actions">
-                <a href="/customer360/index.php" class="btn btn-primary btn-lg">
+                <a href="<?= basePath() ?>/index.php" class="btn btn-primary btn-lg">
                     <i class="bi bi-speedometer2"></i> Ir al Dashboard
                 </a>
-                <a href="/customer360/customers.php" class="btn btn-outline-secondary btn-lg">
+                <a href="<?= basePath() ?>/customers.php" class="btn btn-outline-secondary btn-lg">
                     <i class="bi bi-people"></i> Ver Clientes
                 </a>
             </div>
@@ -109,7 +109,7 @@ include 'includes/header.php';
             </p>
         </div>
         <div class="col-md-4 text-md-end mt-3 mt-md-0">
-            <a href="/customer360/index.php" class="btn btn-light btn-lg">
+            <a href="<?= basePath() ?>/index.php" class="btn btn-light btn-lg">
                 <i class="bi bi-rocket-takeoff"></i> Explorar Dashboard
             </a>
         </div>

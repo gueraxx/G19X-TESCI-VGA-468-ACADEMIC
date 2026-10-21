@@ -36,5 +36,5 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="/customer360/assets/js/users.js?v=1" defer></script>
+<script src="<?= basePath() ?>/assets/js/users.js?v=1" defer></script>
 <?php include 'includes/footer.php'; ?>
