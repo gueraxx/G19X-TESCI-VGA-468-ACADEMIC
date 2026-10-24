@@ -168,3 +168,29 @@ INSERT INTO interactions (customer_id, type, source, subject, description, senti
 (3, 'ticket',  'support',   'Error en facturación',        'Ticket escalado a nivel 2',                   'negative', '2025-09-08 09:15:00'),
 (4, 'email',   'marketing', 'Campaña Q3',                  'Cliente no abrió el email',                   'neutral',  '2025-08-20 08:00:00'),
 (5, 'meeting', 'sales',     'Reunión de renovación',       'Interesado en ampliar contrato',              'positive', '2025-09-12 11:00:00');
+
+
+-- =====================================================
+-- Clientes adicionales para demo (20 clientes)
+-- =====================================================
+INSERT INTO customers (external_id, first_name, last_name, email, phone, company, industry, country, city, segment, lifetime_value, churn_risk, status) VALUES
+('CRM-006', 'Pedro',     'Sánchez',    'pedro.sanchez@techcorp.com',      '+52 555 100 2001', 'TechCorp',       'Tecnología',  'México', 'CDMX',        'silver',    8500.00, 0.35, 'active'),
+('CRM-007', 'Laura',     'Ramírez',    'laura.ramirez@innovatech.com',    '+52 555 100 2002', 'InnovaTech',     'Tecnología',  'México', 'Guadalajara', 'gold',     24500.00, 0.10, 'active'),
+('CRM-008', 'Diego',     'Torres',     'diego.torres@construye.com',      '+52 555 100 2003', 'Construye MX',   'Construcción','México', 'Monterrey',   'bronze',    1800.00, 0.82, 'active'),
+('CRM-009', 'Sofía',     'Mendoza',    'sofia.mendoza@saludplus.com',     '+52 555 100 2004', 'Salud Plus',     'Salud',       'México', 'CDMX',        'platinum',  75000.00, 0.02, 'active'),
+('CRM-010', 'Javier',    'Ríos',       'javier.rios@financiera.com',      '+52 555 100 2005', 'Financiera MX',  'Finanzas',    'México', 'Puebla',      'gold',     28000.00, 0.15, 'active'),
+('CRM-011', 'Carla',     'Vega',       'carla.vega@retailmax.com',        '+52 555 100 2006', 'RetailMax',      'Retail',      'México', 'Tijuana',     'silver',   11000.00, 0.45, 'active'),
+('CRM-012', 'Ricardo',   'Fuentes',    'ricardo.fuentes@logistica.com',   '+52 555 100 2007', 'Logística Ágil', 'Transporte',  'México', 'Querétaro',   'gold',     31500.00, 0.08, 'active'),
+('CRM-013', 'Patricia',  'Navarro',    'patricia.navarro@educa.com',      '+52 555 100 2008', 'Educa MX',       'Educación',   'México', 'Mérida',      'bronze',    2200.00, 0.68, 'active'),
+('CRM-014', 'Andrés',    'Cruz',       'andres.cruz@alimentos.com',       '+52 555 100 2009', 'Alimentos del Norte', 'Alimentos', 'México', 'Chihuahua', 'silver', 9800.00, 0.40, 'active'),
+('CRM-015', 'Beatriz',   'Ortiz',      'beatriz.ortiz@moda.com',          '+52 555 100 2010', 'Moda Bella',     'Retail',      'México', 'León',        'bronze',    3500.00, 0.55, 'active'),
+('CRM-016', 'Fernando',  'Salinas',    'fernando.salinas@autopartes.com', '+52 555 100 2011', 'Autopartes MX',  'Automotriz',  'México', 'Toluca',      'gold',     26500.00, 0.12, 'active'),
+('CRM-017', 'Gabriela',  'Campos',     'gabriela.campos@hoteles.com',     '+52 555 100 2012', 'Hoteles Sol',    'Turismo',     'México', 'Cancún',      'platinum',  58000.00, 0.03, 'active'),
+('CRM-018', 'Hugo',      'Delgado',    'hugo.delgado@seguros.com',        '+52 555 100 2013', 'Seguros Ya',     'Seguros',     'México', 'CDMX',        'silver',   13500.00, 0.28, 'active'),
+('CRM-019', 'Isabel',    'Ruiz',       'isabel.ruiz@agro.com',            '+52 555 100 2014', 'AgroCampo',      'Agricultura', 'México', 'Culiacán',    'bronze',    2800.00, 0.72, 'active'),
+('CRM-020', 'Jorge',     'Aguilar',    'jorge.aguilar@energia.com',       '+52 555 100 2015', 'Energía Total',  'Energía',     'México', 'Monterrey',   'gold',     34000.00, 0.10, 'active'),
+('CRM-021', 'Karen',     'Flores',     'karen.flores@belleza.com',        '+52 555 100 2016', 'Belleza Spa',    'Belleza',     'México', 'Guadalajara', 'bronze',    4200.00, 0.38, 'active'),
+('CRM-022', 'Leonardo',  'Espinoza',   'leonardo.espinoza@muebles.com',   '+52 555 100 2017', 'Muebles Fino',   'Muebles',     'México', 'Aguascalientes', 'silver', 7500.00, 0.52, 'active'),
+('CRM-023', 'Mónica',    'Chávez',     'monica.chavez@pharma.com',        '+52 555 100 2018', 'PharmaLife',     'Salud',       'México', 'CDMX',        'platinum',  82000.00, 0.01, 'active'),
+('CRM-024', 'Néstor',    'Vargas',     'nestor.vargas@tienda.com',        '+52 555 100 2019', 'Tienda Don Néstor', 'Retail',  'México', 'Oaxaca',      'bronze',    1500.00, 0.85, 'active'),
+('CRM-025', 'Olga',      'Paredes',    'olga.paredes@consultora.com',     '+52 555 100 2020', 'Consultora P&P', 'Consultoría', 'México', 'CDMX',        'gold',     22000.00, 0.18, 'active');
