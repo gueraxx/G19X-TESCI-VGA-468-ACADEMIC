@@ -88,11 +88,12 @@ El **MVP** de Customer 360 es la versión más pequeña funcional que:
 - [x] Las notificaciones cargan
 - [x] El admin puede gestionar usuarios
 
-#### ⏳ Pendientes / En verificación
+#### ✅ Funcionales (verificados tras instalar en carpeta G19X-TESCI-VGA-468-ACADEMIC)
 
-- [ ] **Las recomendaciones con IA generan resultados sin errores fatales** (se detectó un conflicto con `env()` en el corte 2, corregido en la v1.1)
-- [ ] **Todas las rutas son relativas** (se están reemplazando las rutas fijas `/customer360/` por `basePath()`)
-- [ ] **No hay errores en consola** en todos los flujos (pendiente de prueba exhaustiva con las correcciones aplicadas)
+- [x] La app funciona en cualquier carpeta (verificado con `G19X-TESCI-VGA-468-ACADEMIC`)
+- [x] Recomendaciones IA funcionan sin errores
+- [x] Recomendaciones con reglas (fallback) funcionan
+- [x] Notificaciones con enlaces correctos
 
 ---
 
