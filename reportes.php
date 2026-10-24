@@ -76,9 +76,6 @@ include 'includes/header.php';
         <button class="btn btn-danger no-print" onclick="exportToPDF('Reporte Ejecutivo')">
     <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
 </button>
-<button onclick="exportToPDFLandscape('Reporte')">
-    <i class="bi bi-file-earmark-pdf"></i> PDF Horizontal
-</button>
         <button class="btn btn-outline-primary" onclick="window.print()">
             <i class="bi bi-printer"></i> Imprimir / PDF
         </button>

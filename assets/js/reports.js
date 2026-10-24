@@ -9,6 +9,9 @@
 
     const BASE_URL = window.location.pathname.replace(/\/[^/]*$/, '').replace(/\/$/, '');
 
+    // ============================================================
+    // Cargar Reportes
+    // ============================================================
     async function loadReports() {
         try {
             const res = await fetch(`${BASE_URL}/api/reports.php`);
@@ -32,6 +35,9 @@
         }
     }
 
+    // ============================================================
+    // Gráficos
+    // ============================================================
     function renderMonthlyChart(monthly) {
         const canvas = document.getElementById('chartMonthly');
         if (!canvas) return;
@@ -44,7 +50,7 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: monthly.map(m => m.month),
+                labels: monthly.map(m => m.month_label || m.month),
                 datasets: [{
                     label: 'Ingresos',
                     data: monthly.map(m => Number(m.revenue)),
@@ -145,5 +151,48 @@
         return `<span class="badge-churn-low">${(r*100).toFixed(0)}%</span>`;
     }
 
+    // ============================================================
+    // Exportar PDF Horizontal (Landscape)
+    // ============================================================
+    function exportToPDFLandscape(title = '') {
+        // 1. Inyectar estilo para forzar A4 horizontal
+        const style = document.createElement('style');
+        style.id = 'landscape-print-style';
+        style.innerHTML = '@page { size: A4 landscape; margin: 10mm; }';
+        document.head.appendChild(style);
+
+        // 2. Poner fecha para el footer
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('es-MX', {
+            day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        document.body.setAttribute('data-print-date', dateStr);
+
+        // 3. Cambiar título temporal
+        const originalTitle = document.title;
+        if (title) {
+            document.title = `${title} — Customer 360`;
+        }
+
+        // 4. Abrir diálogo de impresión
+        setTimeout(() => {
+            window.print();
+
+            // 5. Limpiar después
+            setTimeout(() => {
+                document.title = originalTitle;
+                const styleToRemove = document.getElementById('landscape-print-style');
+                if (styleToRemove) styleToRemove.remove();
+            }, 1000);
+        }, 100);
+    }
+
+    // ============================================================
+    // Exponer al scope global
+    // ============================================================
+    window.exportToPDFLandscape = exportToPDFLandscape;
+
+    // Init
     loadReports();
+
 })();
