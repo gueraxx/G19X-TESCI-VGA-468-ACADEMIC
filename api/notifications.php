@@ -34,7 +34,7 @@ try {
             'icon' => 'bi-exclamation-triangle-fill',
             'title' => 'Cliente en riesgo alto',
             'message' => "{$c['first_name']} {$c['last_name']} (" . ($c['company'] ?: 'Sin empresa') . ") tiene " . round($c['churn_risk'] * 100) . "% de riesgo de abandono.",
-            'link' => "<?= basePath() ?>/customer-detail.php?id={$c['id']}",
+            'link' => "customer-detail.php?id={$c['id']}",
             'time' => 'Reciente',
             'priority' => 1
         ];
@@ -61,7 +61,7 @@ try {
             'icon' => 'bi-cash-coin',
             'title' => 'Nueva transacción',
             'message' => "{$t['first_name']} {$t['last_name']} realizó una compra de $" . number_format($t['amount'], 2),
-            'link' => "<?= basePath() ?>/customer-detail.php?id={$t['customer_id']}",
+            'link' => "customer-detail.php?id={$t['customer_id']}",
             'time' => formatTimeAgo($t['transaction_date']),
             'priority' => 2
         ];
@@ -85,7 +85,7 @@ try {
             'icon' => 'bi-person-plus-fill',
             'title' => 'Cliente nuevo',
             'message' => "Se registró {$c['first_name']} {$c['last_name']} (" . ($c['company'] ?: 'Sin empresa') . ")",
-            'link' => "<?= basePath() ?>/customer-detail.php?id={$c['id']}",
+            'link' => "customer-detail.php?id={$c['id']}",
             'time' => formatTimeAgo($c['created_at']),
             'priority' => 3
         ];
@@ -112,7 +112,7 @@ try {
             'icon' => 'bi-ticket-detailed-fill',
             'title' => 'Ticket con sentimiento negativo',
             'message' => "{$i['first_name']} {$i['last_name']}: " . ($i['subject'] ?: 'Sin asunto'),
-            'link' => "<?= basePath() ?>/customer-detail.php?id={$i['customer_id']}",
+            'link' => "customer-detail.php?id={$i['customer_id']}",
             'time' => formatTimeAgo($i['occurred_at']),
             'priority' => 2
         ];
