@@ -2923,3 +2923,36 @@ body, .kpi-card, .chart-card, .table-card, .feature-card, .rec-card, .sidebar, .
         color: var(--text);
     }
 }
+/* ============================================================
+   PERSONALIZAR AVATAR
+   ============================================================ */
+.color-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.color-btn:hover { transform: scale(1.15); }
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-btn:hover { 
+    border-color: var(--primary); 
+    color: var(--primary);
+    transform: translateY(-2px);
+}

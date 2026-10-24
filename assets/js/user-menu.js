@@ -150,4 +150,112 @@
     window.submitChangePassword = submitChangePassword;
     window.openThemeFromMenu = openThemeFromMenu;
 
+
+        // ============================================================
+    // Personalizar Avatar
+    // ============================================================
+    function openAvatarModal(e) {
+        if (e) e.preventDefault();
+        document.getElementById('userMenuWrapper')?.classList.remove('open');
+        
+        // Cargar valores actuales al preview
+        updatePreview();
+        
+        document.getElementById('avatarModal')?.classList.add('open');
+    }
+
+    function closeAvatarModal() {
+        document.getElementById('avatarModal')?.classList.remove('open');
+        const err = document.getElementById('avatarError');
+        if (err) err.style.display = 'none';
+    }
+
+    function setAvatarColor(color) {
+        document.getElementById('selectedColor').value = color;
+        updatePreview();
+    }
+
+    function setAvatarIcon(icon) {
+        document.getElementById('selectedIcon').value = icon;
+        updatePreview();
+    }
+
+    function updatePreview() {
+        const color = document.getElementById('selectedColor').value;
+        const icon = document.getElementById('selectedIcon').value;
+        const preview = document.getElementById('previewAvatar');
+        
+        if (preview) {
+            preview.style.background = color;
+            preview.style.backgroundImage = 'none';
+            preview.innerHTML = `<i class="bi ${icon}"></i>`;
+        }
+    }
+
+    async function submitAvatar(e) {
+        if (e) e.preventDefault();
+        
+        const color = document.getElementById('selectedColor').value;
+        const icon = document.getElementById('selectedIcon').value;
+        const btn = document.getElementById('avatarSubmit');
+        const errBox = document.getElementById('avatarError');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+        
+        try {
+            const res = await fetch(`${BASE_URL}/api/auth.php?action=update-avatar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ color, icon })
+            });
+            
+            const data = await res.json();
+            
+            if (!res.ok || data.error) {
+                errBox.textContent = data.error || 'Error';
+                errBox.style.display = 'flex';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-check-circle"></i> Guardar';
+                return;
+            }
+            
+            // Actualizar en vivo el avatar del topbar
+            const topAvatar = document.getElementById('userAvatar');
+            if (topAvatar) {
+                topAvatar.style.background = color;
+                topAvatar.style.backgroundImage = 'none';
+                topAvatar.innerHTML = `<i class="bi ${icon}"></i>`;
+            }
+            
+            // Actualizar también el del menú si está visible
+            const menuAvatar = document.querySelector('.user-menu-avatar');
+            if (menuAvatar) {
+                menuAvatar.style.background = color;
+                menuAvatar.style.backgroundImage = 'none';
+                menuAvatar.innerHTML = `<i class="bi ${icon}"></i>`;
+            }
+            
+            btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> ¡Guardado!';
+            
+            setTimeout(() => {
+                closeAvatarModal();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-check-circle"></i> Guardar';
+            }, 1000);
+            
+        } catch (error) {
+            errBox.textContent = 'Error de conexión';
+            errBox.style.display = 'flex';
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Guardar';
+        }
+    }
+
+    // Exponer al scope global
+    window.openAvatarModal = openAvatarModal;
+    window.closeAvatarModal = closeAvatarModal;
+    window.setAvatarColor = setAvatarColor;
+    window.setAvatarIcon = setAvatarIcon;
+    window.submitAvatar = submitAvatar;
 })();

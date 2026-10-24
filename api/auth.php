@@ -39,6 +39,8 @@ try {
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_name']  = $user['full_name'];
         $_SESSION['user_role']  = $user['role'];
+        $_SESSION['user_color'] = $user['avatar_color'] ?? '#4361ee'; // 🆕
+        $_SESSION['user_icon']  = $user['avatar_icon'] ?? 'bi-person-fill'; // 🆕
         $_SESSION['logged_in']  = true;
         $_SESSION['login_time'] = time();
 
@@ -73,7 +75,9 @@ try {
                     'id'        => $_SESSION['user_id'],
                     'email'     => $_SESSION['user_email'],
                     'full_name' => $_SESSION['user_name'],
-                    'role'      => $_SESSION['user_role']
+                    'role'      => $_SESSION['user_role'],
+                    'color'     => $_SESSION['user_color'] ?? '#4361ee', // 🆕
+                    'icon'      => $_SESSION['user_icon'] ?? 'bi-person-fill' // 🆕
                 ]
             ]);
         }
@@ -109,6 +113,38 @@ try {
            ->execute([$newHash, $_SESSION['user_id']]);
 
         jsonResponse(['ok' => true], 200, 'Contraseña actualizada');
+    }
+
+    // ============================================================
+    // ACTUALIZAR AVATAR (NUEVO)
+    // ============================================================
+    if ($action === 'update-avatar') {
+        if (!isset($_SESSION['logged_in'])) {
+            jsonResponse(['error' => 'No autorizado'], 401);
+        }
+
+        $input = json_decode(file_get_contents('php://input'), true);
+        $color = $input['color'] ?? '#4361ee';
+        $icon = $input['icon'] ?? 'bi-person-fill';
+
+        // Validar formato de color (hexadecimal)
+        if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $color)) {
+            jsonResponse(['error' => 'Color inválido'], 400);
+        }
+
+        // Validar que el ícono sea de Bootstrap Icons
+        if (!str_starts_with($icon, 'bi-')) {
+            jsonResponse(['error' => 'Ícono inválido'], 400);
+        }
+
+        $db->prepare("UPDATE users SET avatar_color = ?, avatar_icon = ? WHERE id = ?")
+           ->execute([$color, $icon, $_SESSION['user_id']]);
+
+        // Actualizar la sesión para que se refleje sin cerrar sesión
+        $_SESSION['user_color'] = $color;
+        $_SESSION['user_icon']  = $icon;
+
+        jsonResponse(['ok' => true, 'message' => 'Avatar actualizado']);
     }
 
     jsonResponse(['error' => 'Acción no válida'], 400);

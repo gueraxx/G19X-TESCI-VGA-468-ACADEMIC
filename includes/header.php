@@ -15,6 +15,10 @@ $base = basePath();
 $userName     = $_SESSION['user_name']  ?? 'Usuario';
 $userEmail    = $_SESSION['user_email'] ?? '';
 $userRole     = $_SESSION['user_role']  ?? 'viewer';
+$userColor    = $_SESSION['user_color'] ?? '#4361ee';
+$userIcon     = $_SESSION['user_icon']  ?? 'bi-person-fill';
+
+// Cálculo de iniciales (por si acaso se usa en otro lado)
 $userInitials = strtoupper(implode('', array_map(
     fn($w) => $w[0] ?? '',
     array_slice(explode(' ', $userName), 0, 2)
@@ -40,7 +44,7 @@ $userInitials = strtoupper(implode('', array_map(
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?= $base ?>/assets/css/style.css?v=101" rel="stylesheet">
+    <link href="<?= $base ?>/assets/css/style.css?v=102" rel="stylesheet">
     <link href="<?= $base ?>/assets/css/print.css?v=1" rel="stylesheet" media="print">
 
     <!-- Chart.js PRIMERO, antes de cualquier otro script -->
@@ -128,8 +132,8 @@ $userInitials = strtoupper(implode('', array_map(
             
             <!-- 🍔 Botón menú (solo visible en móvil) -->
             <button class="btn-icon btn-menu-toggle d-lg-none" id="menuToggle" onclick="toggleSidebar()">
-    <i class="bi bi-list" style="font-size: 1.5rem;"></i>
-</button>
+                <i class="bi bi-list" style="font-size: 1.5rem;"></i>
+            </button>
 
             <div>
                 <h1><?= htmlspecialchars($pageTitle) ?></h1>
@@ -178,14 +182,19 @@ $userInitials = strtoupper(implode('', array_map(
 
             <!-- Menú de usuario -->
             <div class="user-menu-wrapper" id="userMenuWrapper">
-                <div class="user-avatar" id="userAvatar" title="<?= htmlspecialchars($userName) ?>">
-                    <?= $userInitials ?>
+                
+                <!-- Avatar del Topbar -->
+                <div class="user-avatar" id="userAvatar" title="<?= htmlspecialchars($userName) ?>" 
+                     style="background: <?= $userColor ?> !important; background-image: none;">
+                    <i class="bi <?= $userIcon ?>"></i>
                 </div>
 
                 <div class="user-menu-dropdown" id="userMenuDropdown">
                     <div class="user-menu-header">
-                        <div class="user-menu-avatar">
-                            <?= $userInitials ?>
+                        <!-- Avatar dentro del Menú -->
+                        <div class="user-menu-avatar" id="userMenuAvatar" 
+                             style="background: <?= $userColor ?> !important; background-image: none;">
+                            <i class="bi <?= $userIcon ?>"></i>
                         </div>
                         <div>
                             <strong><?= htmlspecialchars($userName) ?></strong>
@@ -197,11 +206,14 @@ $userInitials = strtoupper(implode('', array_map(
                     </div>
 
                     <div class="user-menu-list">
+                        <a href="#" class="user-menu-item" onclick="openAvatarModal(event)">
+                            <i class="bi bi-palette"></i> Personalizar perfil
+                        </a>
                         <a href="#" class="user-menu-item" onclick="openChangePassword(event)">
                             <i class="bi bi-key"></i> Cambiar contraseña
                         </a>
                         <a href="#" class="user-menu-item" onclick="openThemeFromMenu(event)">
-                            <i class="bi bi-palette"></i> Cambiar tema
+                            <i class="bi bi-circle-half"></i> Cambiar tema
                         </a>
                         <div class="user-menu-divider"></div>
                         <a href="#" class="user-menu-item text-danger" onclick="logout(event)">

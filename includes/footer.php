@@ -6,6 +6,68 @@
 </footer>
 </div> <!-- Cierre de .main-content -->
 
+<!-- Modal: Personalizar Avatar -->
+<div class="modal-overlay" id="avatarModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h5><i class="bi bi-palette text-primary"></i> Personalizar Perfil</h5>
+            <button class="modal-close" onclick="closeAvatarModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <form id="avatarForm" onsubmit="submitAvatar(event)">
+            <div class="modal-body">
+                <div id="avatarError" class="login-error" style="display: none;"></div>
+
+                <div class="form-group text-center mb-4">
+                    <div class="user-avatar mx-auto mb-3" id="previewAvatar" style="width: 80px; height: 80px; font-size: 2rem;">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <small class="text-muted">Así se verá tu avatar</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Color de fondo</label>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button type="button" class="color-btn" style="background: #4361ee" onclick="setAvatarColor('#4361ee')"></button>
+                        <button type="button" class="color-btn" style="background: #7209b7" onclick="setAvatarColor('#7209b7')"></button>
+                        <button type="button" class="color-btn" style="background: #10b981" onclick="setAvatarColor('#10b981')"></button>
+                        <button type="button" class="color-btn" style="background: #ef4444" onclick="setAvatarColor('#ef4444')"></button>
+                        <button type="button" class="color-btn" style="background: #f59e0b" onclick="setAvatarColor('#f59e0b')"></button>
+                        <button type="button" class="color-btn" style="background: #06b6d4" onclick="setAvatarColor('#06b6d4')"></button>
+                        <button type="button" class="color-btn" style="background: #475569" onclick="setAvatarColor('#475569')"></button>
+                        <button type="button" class="color-btn" style="background: #ff6b6b" onclick="setAvatarColor('#ff6b6b')"></button>
+                    </div>
+                    <input type="hidden" name="avatar_color" id="selectedColor" value="<?= $_SESSION['user_color'] ?? '#4361ee' ?>">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label>Ícono</label>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-person-fill')"><i class="bi bi-person-fill"></i></button>
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-briefcase-fill')"><i class="bi bi-briefcase-fill"></i></button>
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-star-fill')"><i class="bi bi-star-fill"></i></button>
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-heart-fill')"><i class="bi bi-heart-fill"></i></button>
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-lightning-fill')"><i class="bi bi-lightning-fill"></i></button>
+                        <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-rocket-fill')"><i class="bi bi-rocket-fill"></i></button>
+                    </div>
+                    <input type="hidden" name="avatar_icon" id="selectedIcon" value="<?= $_SESSION['user_icon'] ?? 'bi-person-fill' ?>">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" onclick="closeAvatarModal()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary" id="avatarSubmit">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- Modal: Cambiar contraseña -->
 <div class="modal-overlay" id="changePasswordModal">
     <div class="modal-box">
@@ -133,7 +195,7 @@
 <script src="<?= basePath() ?>/assets/js/theme.js?v=2"></script>
 <script src="<?= basePath() ?>/assets/js/notifications.js?v=3"></script>
 <script src="<?= basePath() ?>/assets/js/export.js?v=2"></script>
-<script src="<?= basePath() ?>/assets/js/user-menu.js?v=2"></script>
+<script src="<?= basePath() ?>/assets/js/user-menu.js?v=3"></script>
 <script src="<?= basePath() ?>/assets/js/permissions.js?v=2"></script>
 </body>
 </html>
