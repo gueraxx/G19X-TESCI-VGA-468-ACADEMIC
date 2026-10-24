@@ -1,10 +1,11 @@
-      <footer class="text-center text-muted py-4 mt-5">
-        <small>
-            <i class="bi bi-people-fill"></i>
-            <strong>Customer 360</strong> &copy; <?= date('Y') ?> — PluriOne
-        </small>
-    </footer>
-</div>
+<footer class="text-center text-muted py-4 mt-5">
+    <small>
+        <i class="bi bi-people-fill"></i>
+        <strong>Customer 360</strong> &copy; <?= date('Y') ?> — PluriOne
+    </small>
+</footer>
+</div> <!-- Cierre de .main-content -->
+
 <!-- Modal: Cambiar contraseña -->
 <div class="modal-overlay" id="changePasswordModal">
     <div class="modal-box">
@@ -46,6 +47,7 @@
         </form>
     </div>
 </div>
+
 <!-- Modal: Crear/Editar Usuario -->
 <div class="modal-overlay" id="userModal">
     <div class="modal-box">
@@ -98,11 +100,40 @@
         </form>
     </div>
 </div>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS GLOBALES -->
+<!-- ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<?= basePath() ?>/assets/js/theme.js"></script>
-<script src="<?= basePath() ?>/assets/js/notifications.js?v=1"></script>
-<script src="<?= basePath() ?>/assets/js/export.js?v=1"></script>
-<script src="<?= basePath() ?>/assets/js/user-menu.js?v=1"></script>
-<script src="<?= basePath() ?>/assets/js/permissions.js?v=1"></script>
+
+<!-- Lógica del Sidebar Móvil -->
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (sidebar) sidebar.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('show');
+    }
+
+    document.addEventListener('click', (e) => {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const toggle = document.getElementById('menuToggle');
+        
+        if (sidebar && sidebar.classList.contains('open')) {
+            if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+                if (overlay) overlay.classList.remove('show');
+            }
+        }
+    });
+</script>
+
+<!-- Scripts del sistema (con versiones actualizadas para forzar recarga) -->
+<script src="<?= basePath() ?>/assets/js/theme.js?v=2"></script>
+<script src="<?= basePath() ?>/assets/js/notifications.js?v=3"></script>
+<script src="<?= basePath() ?>/assets/js/export.js?v=2"></script>
+<script src="<?= basePath() ?>/assets/js/user-menu.js?v=2"></script>
+<script src="<?= basePath() ?>/assets/js/permissions.js?v=2"></script>
 </body>
 </html>

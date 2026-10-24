@@ -2892,3 +2892,34 @@ body, .kpi-card, .chart-card, .table-card, .feature-card, .rec-card, .sidebar, .
         margin: 12px;
     }
 }
+/* ============================================================
+   BOTÓN HAMBURGUESA (RESPONSIVE)
+   ============================================================ */
+
+/* 1. Oculto por defecto en escritorio */
+.btn-menu-toggle {
+    display: none !important;
+}
+
+/* 2. Solo visible en pantallas menores a 992px */
+@media (max-width: 992px) {
+    .btn-menu-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--border);
+        color: var(--text);
+        box-shadow: var(--shadow-sm);
+    }
+
+    [data-theme="dark"] .btn-menu-toggle {
+        background: var(--card-bg);
+        border-color: var(--border);
+        color: var(--text);
+    }
+}
