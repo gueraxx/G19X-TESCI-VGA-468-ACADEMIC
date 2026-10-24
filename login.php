@@ -1,10 +1,12 @@
 <?php
 session_start();
 
+// ✅ Cargar auth.php SIEMPRE, no solo si está logueado
+require_once __DIR__ . '/config/auth.php';
+
 // Si ya está logueado, redirigir al dashboard
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    require_once __DIR__ . '/config/auth.php';
-header('Location: ' . basePath() . '/index.php');
+    header('Location: ' . basePath() . '/index.php');
     exit;
 }
 ?>
@@ -51,7 +53,7 @@ header('Location: ' . basePath() . '/index.php');
                 <label for="email">
                     <i class="bi bi-envelope"></i> Correo electrónico
                 </label>
-                <input type="email" id="email" name="email" placeholder="admin@customer360.com" required autofocus>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required autofocus>
             </div>
 
             <div class="form-group">
@@ -74,49 +76,11 @@ header('Location: ' . basePath() . '/index.php');
             </button>
         </form>
 
-        <div class="login-footer">
-            <div class="demo-credentials">
-                <i class="bi bi-info-circle"></i>
-                <div>
-                    <strong>Credenciales de prueba: ADMIN</strong>
-                    <div class="credential-row">
-                        <span>Email:</span> <code>admin@customer360.com</code>
-                    </div>
-                    <div class="credential-row">
-                        <span>Contraseña:</span> <code>admin123</code>
-                    </div>
-                </div>
-
-                <div>
-                    <strong>Credenciales de prueba: SALES</strong>
-                    <div class="credential-row">
-                        <span>Email:</span> <code>sales@customer360.com</code>
-                    </div>
-                    <div class="credential-row">
-                        <span>Contraseña:</span> <code>sales123</code>
-                    </div>
-                </div>
-
-                <div>
-                    <strong>Credenciales de prueba: ANALISTA</strong>
-                    <div class="credential-row">
-                        <span>Email:</span> <code>analyst@customer360.com</code>
-                    </div>
-                    <div class="credential-row">
-                        <span>Contraseña:</span> <code>analyst123</code>
-                    </div>
-                </div>
-
-                <div>
-                    <strong>Credenciales de prueba: VIEWER</strong>
-                    <div class="credential-row">
-                        <span>Email:</span> <code>viewer@customer360.com</code>
-                    </div>
-                    <div class="credential-row">
-                        <span>Contraseña:</span> <code>viewer123</code>
-                    </div>
-                </div>
-            </div>
+        <div class="login-footer text-center mt-4">
+            <p class="text-muted small mb-0">
+                <i class="bi bi-shield-lock"></i>
+                ¿Problemas para acceder? Contacta al administrador.
+            </p>
         </div>
     </div>
 
