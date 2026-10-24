@@ -6,69 +6,70 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.
 
 ---
 
-## [1.0.0] — 2025-XX-XX
+## [1.2.0] — 2026-10-23
+
+### 🐛 Corregido
+
+- **`api/notifications.php`**: eliminado `<?= basePath() ?>` dentro de strings PHP que rompía los enlaces de las notificaciones.
+- **`assets/js/notifications.js`**: ahora antepone `BASE_URL` a los links de notificaciones.
+- **`README.md`**: corregido `git clone` para apuntar al repositorio real (`gueraxx/G19X-TESCI-VGA-468-ACADEMIC`).
+- **`docs/manual-usuario.md`**: rutas actualizadas, ya no menciona `/customer360/` fijo.
+
+### ✨ Añadido
+
+- **`database/customer360.sql`**: agregados 20 clientes adicionales para demo (total: 25).
+- **`docs/changelog.md`**: esta entrada.
+
+### 🔧 Cambiado
+
+- **`docs/MVP.md`**: movidas las casillas de "en verificación" a "verificadas" tras instalación exitosa en carpeta con el nombre real del repositorio.
+
+---
+
+## [1.1.0] — 2026-10-20
+
+### 🐛 Corregido
+
+- **`api/recommendations-list.php`**: eliminada `env()` duplicada que causaba error fatal.
+- **Páginas PHP**: `churn.php` ahora tiene `requireLogin()`.
+- **`config/auth.php`**: agregado `basePath()` para rutas relativas.
+- **`includes/header.php` y `footer.php`**: usan `basePath()`.
+- **Todos los `.js`**: usan `BASE_URL` dinámico.
+- **`config/database.php`**: errores internos ahora van al log, no al cliente.
+
+### 🗑️ Eliminado
+
+- **`setup-hashes.php` y `setup-users.php`**: expuestos sin login y con contraseñas en texto plano.
+- **Rutas fijas `/customer360/`**: reemplazadas por `basePath()` / `BASE_URL`.
+
+### 🔧 Cambiado
+
+- **`docs/MVP.md` v1.1**: separadas las secciones "verificadas" de "en verificación".
+- **`README.md`**: advertido que la carpeta puede tener cualquier nombre.
+
+---
+
+## [1.0.0] — 2026-10-14
 
 ### ✨ Añadido
 
 - Autenticación con roles (admin, analyst, sales, viewer)
 - Dashboard ejecutivo con KPIs y 4 gráficos
-- Gestión de clientes con búsqueda
+- Gestión de clientes con búsqueda y CRUD
 - Perfil 360° con timeline de interacciones
 - Predicción de churn heurística
 - Segmentación automática por LTV
 - Recomendaciones con IA generativa (Groq + GPT-OSS 120B)
-- Caché de respuestas de IA (24 horas)
+- Caché de respuestas de IA (24h)
 - Sistema de notificaciones inteligentes
 - Exportación a CSV y PDF
 - Modo oscuro con persistencia
 - Gestión de usuarios (solo admin)
 - Diseño responsive
 - Documentación completa (PRD, MVP, Manual, Arquitectura)
-
-### 🔧 Cambiado
-
-- Migración de reglas de negocio a IA generativa
-- Refactorización de archivos JS con IIFE para evitar colisiones
-- Optimización de consultas SQL con índices
-
-### 🐛 Corregido
-
-- Error de `BASE_URL` duplicada en múltiples archivos JS
-- Modo oscuro en tarjetas del perfil 360°
-- Dropdown de notificaciones sin estilos
-- Rutas de `require_once` en páginas raíz
-- Codificación de archivos JS a UTF-8
+- Script SQL completo con tablas `users` y `ai_cache`
 
 ---
 
-## [0.5.0] — 2025-XX-XX (Beta)
-
-### ✨ Añadido
-
-- Estructura base del proyecto (PHP + Bootstrap)
-- Conexión a MySQL
-- Dashboard inicial con KPIs
-- Listado de clientes
-- Perfil básico del cliente
-- Predicción de churn inicial
-- Recomendaciones con reglas de negocio
-
-### 🐛 Corregido
-
-- Estilos de tablas en modo oscuro
-- Carga de Chart.js
-
----
-
-## [0.1.0] — 2025-XX-XX (Alpha)
-
-### ✨ Añadido
-
-- Setup inicial del proyecto
-- Estructura de carpetas
-- Base de datos con datos de prueba
-- Documentación inicial (PRD, MVP)
-
----
-
-**Última actualización:** [07/10/26]
+**Última actualización:** 2026-10-23
+**Versión actual:** 1.2.0
