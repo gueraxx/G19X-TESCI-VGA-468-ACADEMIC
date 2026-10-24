@@ -219,7 +219,7 @@ El código funciona con **cualquier nombre de carpeta** gracias al helper `baseP
 
 ```bash
 cd C:\xampp\htdocs
-git clone https://github.com/TU-USUARIO/customer360.git
+git clone https://github.com/gueraxx/G19X-TESCI-VGA-468-ACADEMIC.git
 ```
 
 O descarga el ZIP y descomprímelo en `C:\xampp\htdocs\`.
