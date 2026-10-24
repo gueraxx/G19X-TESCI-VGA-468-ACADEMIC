@@ -53,7 +53,9 @@ include 'includes/header.php';
                         <strong>1 en riesgo</strong>
                     </div>
                 </div>
-                <div class="hero-circle"></div>
+                <div class="hero-circle">
+    <i class="bi bi-globe2"></i>
+</div>
             </div>
         </div>
     </div>
