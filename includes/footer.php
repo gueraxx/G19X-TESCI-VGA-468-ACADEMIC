@@ -39,7 +39,9 @@
                         <button type="button" class="color-btn" style="background: #475569" onclick="setAvatarColor('#475569')"></button>
                         <button type="button" class="color-btn" style="background: #ff6b6b" onclick="setAvatarColor('#ff6b6b')"></button>
                     </div>
-                    <input type="hidden" name="avatar_color" id="selectedColor" value="<?= $_SESSION['user_color'] ?? '#4361ee' ?>">
+                    
+                    <!-- 🛡️ AHORA CON htmlspecialchars -->
+                    <input type="hidden" name="avatar_color" id="selectedColor" value="<?= htmlspecialchars($_SESSION['user_color'] ?? '#4361ee') ?>">
                 </div>
 
                 <div class="form-group mt-3">
@@ -52,7 +54,9 @@
                         <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-lightning-fill')"><i class="bi bi-lightning-fill"></i></button>
                         <button type="button" class="icon-btn" onclick="setAvatarIcon('bi-rocket-fill')"><i class="bi bi-rocket-fill"></i></button>
                     </div>
-                    <input type="hidden" name="avatar_icon" id="selectedIcon" value="<?= $_SESSION['user_icon'] ?? 'bi-person-fill' ?>">
+                    
+                    <!-- 🛡️ AHORA CON htmlspecialchars -->
+                    <input type="hidden" name="avatar_icon" id="selectedIcon" value="<?= htmlspecialchars($_SESSION['user_icon'] ?? 'bi-person-fill') ?>">
                 </div>
             </div>
 

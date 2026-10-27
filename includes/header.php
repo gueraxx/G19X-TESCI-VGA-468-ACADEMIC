@@ -44,7 +44,7 @@ $userInitials = strtoupper(implode('', array_map(
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?= $base ?>/assets/css/style.css?v=102" rel="stylesheet">
+    <link href="<?= $base ?>/assets/css/style.css?v=103" rel="stylesheet">
     <link href="<?= $base ?>/assets/css/print.css?v=1" rel="stylesheet" media="print">
 
     <!-- Chart.js PRIMERO, antes de cualquier otro script -->
@@ -185,16 +185,16 @@ $userInitials = strtoupper(implode('', array_map(
                 
                 <!-- Avatar del Topbar -->
                 <div class="user-avatar" id="userAvatar" title="<?= htmlspecialchars($userName) ?>" 
-                     style="background: <?= $userColor ?> !important; background-image: none;">
-                    <i class="bi <?= $userIcon ?>"></i>
+                     style="background: <?= htmlspecialchars($userColor) ?> !important; background-image: none;">
+                    <i class="bi <?= htmlspecialchars($userIcon) ?>"></i>
                 </div>
 
                 <div class="user-menu-dropdown" id="userMenuDropdown">
                     <div class="user-menu-header">
                         <!-- Avatar dentro del Menú -->
                         <div class="user-menu-avatar" id="userMenuAvatar" 
-                             style="background: <?= $userColor ?> !important; background-image: none;">
-                            <i class="bi <?= $userIcon ?>"></i>
+                             style="background: <?= htmlspecialchars($userColor) ?> !important; background-image: none;">
+                            <i class="bi <?= htmlspecialchars($userIcon) ?>"></i>
                         </div>
                         <div>
                             <strong><?= htmlspecialchars($userName) ?></strong>

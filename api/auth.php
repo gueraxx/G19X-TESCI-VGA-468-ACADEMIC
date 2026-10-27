@@ -116,7 +116,7 @@ try {
     }
 
     // ============================================================
-    // ACTUALIZAR AVATAR (NUEVO)
+    // ACTUALIZAR AVATAR
     // ============================================================
     if ($action === 'update-avatar') {
         if (!isset($_SESSION['logged_in'])) {
@@ -125,22 +125,24 @@ try {
 
         $input = json_decode(file_get_contents('php://input'), true);
         $color = $input['color'] ?? '#4361ee';
-        $icon = $input['icon'] ?? 'bi-person-fill';
+        $icon  = $input['icon']  ?? 'bi-person-fill';
 
-        // Validar formato de color (hexadecimal)
-        if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $color)) {
+        // 🛡️ Listas cerradas de valores permitidos
+        $coloresPermitidos = ['#4361ee', '#7209b7', '#10b981', '#ef4444', '#f59e0b', '#06b6d4', '#475569', '#ff6b6b'];
+        $iconosPermitidos  = ['bi-person-fill', 'bi-briefcase-fill', 'bi-star-fill', 'bi-heart-fill', 'bi-lightning-fill', 'bi-rocket-fill'];
+
+        // Validar contra las listas
+        if (!in_array($color, $coloresPermitidos, true)) {
             jsonResponse(['error' => 'Color inválido'], 400);
         }
-
-        // Validar que el ícono sea de Bootstrap Icons
-        if (!str_starts_with($icon, 'bi-')) {
+        if (!in_array($icon, $iconosPermitidos, true)) {
             jsonResponse(['error' => 'Ícono inválido'], 400);
         }
 
         $db->prepare("UPDATE users SET avatar_color = ?, avatar_icon = ? WHERE id = ?")
            ->execute([$color, $icon, $_SESSION['user_id']]);
 
-        // Actualizar la sesión para que se refleje sin cerrar sesión
+        // Actualizar la sesión
         $_SESSION['user_color'] = $color;
         $_SESSION['user_icon']  = $icon;
 
