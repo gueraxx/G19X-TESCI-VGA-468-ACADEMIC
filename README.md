@@ -271,10 +271,11 @@ GROQ_MODEL=openai/gpt-oss-120b
 ### Paso 6: Abrir en el navegador
 
 ```
-http://localhost/customer360
+http://localhost/G19X-TESCI-VGA-468-ACADEMIC/
 ```
 
-Serás redirigido al login. Usa cualquiera de las credenciales de prueba. 🎉
+
+> 💡 Si clonaste o descomprimiste con otro nombre de carpeta, usa ese nombre en la URL.
 
 ---
 
@@ -347,7 +348,7 @@ Serás redirigido al login. Usa cualquiera de las credenciales de prueba. 🎉
 ## 📁 Estructura del Proyecto
 
 ```
-customer360/
+G19X-TESCI-VGA-468-ACADEMIC/
 │
 ├── api/                          # Endpoints REST (JSON)
 │   ├── auth.php

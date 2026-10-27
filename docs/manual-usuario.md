@@ -127,7 +127,7 @@ Cliente
 
 **Paso 2:** Ve a la URL del sistema:
 ```
-http://localhost/customer360
+http://localhost/G19X-TESCI-VGA-468-ACADEMIC
 ```
 
 **Paso 3:** Serás redirigido a la pantalla de login
@@ -440,7 +440,7 @@ El sistema valida automáticamente:
 
 **Opción 3:** URL directa:
 ```
-http://localhost/customer360/customer-detail.php?id=1
+http://localhost/G19X-TESCI-VGA-468-ACADEMIC/customer-detail.php?id=1
 ```
 
 ![Perfil 360](screenshots/customer-detail.png)
@@ -734,7 +734,7 @@ Cada tarjeta muestra:
 Si quieres comparar con reglas de negocio, agrega `?rules=1` a la URL:
 
 ```
-http://localhost/customer360/recomendaciones.php?rules=1
+http://localhost/G19X-TESCI-VGA-468-ACADEMIC/recomendaciones.php?rules=1
 ```
 
 ---
