@@ -456,11 +456,27 @@ El script `database/customer360.sql` incluye:
 | [Plan de Pruebas](docs/plan-pruebas.md) | QA y testing |
 | [Changelog](docs/changelog.md) | Historial de versiones |
 
----
+## 🤖 Uso de IA
+
+En este proyecto utilicé un asistente de Inteligencia Artificial (DeepSeek) como **copiloto técnico y mentor** durante todo el desarrollo. Considero importante ser transparente sobre cómo lo usé:
+
+### ¿Para qué utilicé la IA?
+- **Estructuración del proyecto:** Me ayudó a definir la arquitectura inicial de carpetas y a crear los archivos base (controladores, rutas y modelos).
+- **Escritura de código:** Generé gran parte de los scripts JS (como las gráficas con Chart.js y el menú responsive), las consultas SQL y la lógica de la API (como el cálculo del churn y la integración con Groq).
+- **Depuración (Debugging):** Fue mi principal herramienta para resolver errores. Por ejemplo, cuando el login se quedó en blanco por el `basePath()`, cuando el menú hamburguesa no se ocultaba en escritorio, o cuando la IA fallaba por un conflicto con la doble declaración de `env()`.
+- **Redacción:** Me apoyé en la IA para estructurar la documentación (PRD, MVP, manuales) y las bitácoras de pruebas.
+
+### ¿Qué hice yo (mi trabajo y criterio)?
+- **Decisiones de producto:** Yo definí las reglas de negocio, cómo quería que se viera el sistema (los colores, las gráficas, el modo oscuro) y qué funcionalidades agregar en cada corte de retroalimentación.
+- **Pruebas en el mundo real:** Instalé todo en XAMPP, configuré las bases de datos, probé los roles (Admin, Viewer, etc.) y detecté fallos que la IA no previó (como el puerto 3308 de mi XAMPP o los enlaces rotos de las notificaciones).
+- **Seguridad:** Implementé y verifiqué las validaciones de los formularios, evité subir el archivo `.env` a GitHub y aprendí a usar `htmlspecialchars()` para evitar inyecciones XSS.
+- **Control de versiones:** Revisé los cambios con `git status` y `git diff` antes de cada commit, asegurándome de subir solo los archivos correctos.
+
+*La IA me ayudó a acelerar el proceso y a aprender buenas prácticas, pero la dirección del proyecto, la validación visual y la corrección de errores fueron parte de mi trabajo.*
 
 ## 🗺️ Roadmap
 
-### ✅ v1.0 (actual)
+### ✅ v1.2
 
 - Login con roles y permisos
 - Dashboard con 4 gráficos
@@ -474,18 +490,6 @@ El script `database/customer360.sql` incluye:
 - Modo oscuro
 - Gestión de usuarios
 
-### 🔜 v2.0 (futuro)
-
-- Autenticación con Microsoft Entra ID (SSO)
-- Integración real con CRM/ERP
-- Power BI embebido
-- App móvil (PWA)
-- Notificaciones por email
-- Multi-idioma
-- Chatbot con IA
-- Paginación server-side
-
----
 
 ## 🤝 Contribuir
 
