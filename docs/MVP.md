@@ -1,6 +1,6 @@
 # 🚀 MVP — Minimum Viable Product
 
-## Customer 360 — Versión 1.1
+## Customer 360 — Versión 1.2
 
 ---
 
@@ -88,14 +88,14 @@ El **MVP** de Customer 360 es la versión más pequeña funcional que:
 - [x] Las notificaciones cargan
 - [x] El admin puede gestionar usuarios
 
-#### ✅ Funcionales (verificados tras instalar en carpeta G19X-TESCI-VGA-468-ACADEMIC)
+#### ✅ Funcionales (verificados tras instalación en carpeta G19X-TESCI-VGA-468-ACADEMIC)
 
-- [x] La app funciona en cualquier carpeta (verificado con `G19X-TESCI-VGA-468-ACADEMIC`)
+- [x] La app funciona en cualquier carpeta
 - [x] Recomendaciones IA funcionan sin errores
 - [x] Recomendaciones con reglas (fallback) funcionan
 - [x] Notificaciones con enlaces correctos
 
----
+> 📄 **Evidencia:** Puedes consultar la bitácora completa de esta instalación desde cero en [docs/evidencias/instalacion-limpia-2026-10-27.md](evidencias/instalacion-limpia-2026-10-27.md).
 
 ### 6. Definition of Done (DoD)
 
@@ -163,5 +163,5 @@ El MVP de Customer 360 entrega **valor inmediato** al:
 
 ---
 
-**Última actualización:** 20/10/2026
-**Versión:** 1.1
+**Última actualización:** 26/10/2026
+**Versión:** 1.2

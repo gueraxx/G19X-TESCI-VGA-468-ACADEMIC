@@ -1,0 +1,57 @@
+# Instalación desde cero — 27-oct-2026
+
+**Repositorio:** G19X-TESCI-VGA-468-ACADEMIC
+**Entorno:** Windows 11, XAMPP (PHP 8.2, MariaDB 10.4), Chrome (Modo Incógnito)
+**URL de prueba:** `http://localhost/G19X-TESCI-VGA-468-ACADEMIC/`
+
+## Bitácora de pruebas
+
+| Paso | Qué hice | Resultado |
+|---|---|---|
+| 1 | Ejecuté `git clone` en una carpeta nueva de `htdocs`. | ✅ Se creó la carpeta correctamente. |
+| 2 | Creé la base de datos `customer360` en phpMyAdmin e importé `database/customer360.sql`. | ✅ Se crearon las 5 tablas (`users`, `customers`, `interactions`, `transactions`, `ai_cache`). |
+| 3 | Copié `.env.example` a `.env` y configuré las credenciales. | ⚠️ Error de conexión: el `.env.example` trae el puerto `3306`, pero mi XAMPP usa el `3308`. Lo corregí en `.env` y conectó perfecto. |
+| 4 | Abrí la URL en una ventana de incógnito. | ⚠️ Me mandaba directo al dashboard (por la cookie de sesión de mi proyecto original en localhost). En incógnito me pidió login correctamente. |
+| 5 | Entré con los 4 roles (Admin, Analyst, Sales, Viewer). | ✅ Viewer no ve "Usuarios", ni "Churn" ni "Segmentos". |
+| 6 | Revisé el Dashboard. | ⚠️ Las gráficas salían vacías. El problema era que Chart.js se cargaba después del `dashboard.js`. Se movió al `<head>` y se solucionó. |
+| 7 | Recalculé el Churn y los Segmentos. | ✅ Los datos del SQL (LTV, segmento y churn) coinciden exactamente y no cambian al recalcular. |
+| 8 | Abrí los perfiles 360° de los 25 clientes. | ✅ Todos tienen transacciones y un timeline de interacciones. |
+| 9 | Probé las recomendaciones (con GROQ_API_KEY). | ✅ El banner dice "IA Generativa activa". Genera recomendaciones personalizadas. |
+| 10 | Probé las recomendaciones (sin GROQ_API_KEY, usando `?rules=1`). | ✅ El banner cambia a "Modo reglas de negocio" y no se rompe. |
+| 11 | Exporté reportes a CSV y a PDF (horizontal y vertical). | ✅ Descarga los archivos correctamente. |
+| 12 | Revisé las notificaciones de la campana. | ✅ Aparecen las notificaciones (riesgo alto, tickets negativos) y los enlaces llevan al perfil correcto. |
+| 13 | Cambié el avatar en "Personalizar perfil". | ✅ Se guarda el color e ícono y se refleja en el topbar. |
+| 14 | Probé inyectar código malicioso en el ícono del avatar (vía Consola). | ✅ El servidor bloquea el ataque con `{"error": "Ícono inválido"}`. |
+
+## Notas y correcciones durante la prueba
+
+- **Corrección de rutas:** Al principio el dashboard intentaba cargar los scripts en `/customer360/` en lugar de `/G19X-TESCI-VGA-468-ACADEMIC/`. Se corrigió usando `basePath()` y el `BASE_URL` dinámico en los JS.
+- **Corrección de fechas:** El gráfico de "Evolución de Ingresos" salía vacío porque las fechas del SQL eran fijas de 2025. Se actualizaron a fechas relativas (`DATE_SUB(NOW(), ...)`) para que siempre haya datos en los últimos 6 meses.
+- **Error fatal en login:** Al no incluir `auth.php` antes de usar `basePath()`, el login daba pantalla blanca. Se solucionó poniendo el `require_once` al principio.
+- **Configuración del puerto de MySQL:** Se documentó en `.env.example` que el puerto puede variar en XAMPP (3306, 3307 o 3308).
+
+## 📸 Capturas de pantalla de la instalación
+
+### 1. Dashboard con datos reales
+Se observa la gráfica de evolución de ingresos con datos relativos y los 25 clientes cargados.
+![Dashboard](../screenshots/01-dashboard.png)
+
+### 2. Permisos por rol (Viewer)
+Al iniciar sesión como Viewer, los módulos de Churn, Segmentos y Usuarios desaparecen del menú.
+![Rol Viewer](../screenshots/02-role-viewer.png)
+
+### 3. Recalcular Churn
+El botón de recalcular no altera los valores previamente calculados en la base de datos, demostrando que la lógica es consistente.
+![Recalcular Churn](../screenshots/03-recalcular-churn.png)
+
+### 4. Recomendaciones con IA
+El banner confirma la conexión con Groq para generar recomendaciones personalizadas.
+![Recomendaciones IA](../screenshots/04-recomendaciones-ia.png)
+
+### 5. Notificaciones dinámicas
+El panel de notificaciones muestra alertas generadas a partir de los datos reales de la base.
+![Notificaciones](../screenshots/05-notificaciones.png)
+
+### 6. Personalización de avatar
+El usuario puede cambiar su color e ícono desde el menú de perfil.
+![Perfil y Avatar](../screenshots/06-perfil-avatar.png)
