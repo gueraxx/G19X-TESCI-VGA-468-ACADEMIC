@@ -437,11 +437,11 @@ ai_cache           → Caché de recomendaciones IA
 ### Datos de prueba incluidos
 
 El script `database/customer360.sql` incluye:
-- ✅ **5 clientes** con diferentes segmentos
-- ✅ **7 transacciones** distribuidas en el tiempo
-- ✅ **5 interacciones** de distintos tipos
-- ✅ **4 usuarios** (uno por cada rol)
-- ✅ **0 registros** en `ai_cache` (se llena automáticamente)
+- ✅ **25 clientes** con diferentes segmentos, LTV y riesgos de churn.
+- ✅ **Múltiples transacciones** con fechas relativas para que el dashboard siempre luzca lleno.
+- ✅ **Interacciones recientes** con sentimientos variados para el timeline.
+- ✅ **4 usuarios** (uno por cada rol).
+- ✅ **0 registros** en `ai_cache` (se llena automáticamente).
 
 ---
 
@@ -449,8 +449,8 @@ El script `database/customer360.sql` incluye:
 
 | Documento | Descripción |
 |-----------|-------------|
-| [PRD](docs/prd.md) | Product Requirements Document |
-| [MVP](docs/mvp.md) | Minimum Viable Product |
+| [PRD](docs/PRD.md) | Product Requirements Document |
+| [MVP](docs/MVP.md) | Minimum Viable Product |
 | [Arquitectura](docs/arquitectura.md) | Documento de arquitectura técnica |
 | [Manual de Usuario](docs/manual-usuario.md) | Guía de uso paso a paso |
 | [Plan de Pruebas](docs/plan-pruebas.md) | QA y testing |

@@ -5,7 +5,18 @@ Todos los cambios notables del proyecto.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/).
 
 ---
+## [1.3.0] — 2026-10-27
 
+### 🐛 Corregido
+- **`database/customer360.sql`**: ajustados los valores de `segment` y `churn_risk` de 14 clientes para que coincidan exactamente con la lógica de los botones «Recalcular» de la app.
+- **`README.md`**: corregida la cantidad de datos de prueba (25 clientes) y arreglados los enlaces a la documentación que tenían errores de mayúsculas (ej. `docs/prd.md` → `docs/PRD.md`).
+- **`docs/MVP.md`**: corregido el enlace de la bitácora de evidencias.
+
+### ✨ Añadido
+- **Bitácora de instalación limpia** (`docs/evidencias/instalacion-limpia-2026-10-27.md`): con el paso a paso, correcciones y capturas de pantalla.
+- **Sección "Uso de IA"** en el README para transparentar el desarrollo.
+
+---
 ## [1.2.0] — 2026-10-23
 
 ### 🐛 Corregido
