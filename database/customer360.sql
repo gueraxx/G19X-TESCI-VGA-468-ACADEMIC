@@ -1,5 +1,5 @@
 -- =====================================================
--- Base de datos: Customer 360 (Versión Final Cuadrada)
+-- Base de datos: Customer 360 (Versión Final)
 -- Proyecto: Plataforma Inteligente Customer 360
 -- Autor: Valentina — PluriOne
 -- =====================================================
@@ -119,31 +119,31 @@ INSERT INTO `users` (`id`, `email`, `password_hash`, `full_name`, `role`, `is_ac
 
 -- Clientes (25 en total) - Valores calculados para que coincidan con las reglas
 INSERT INTO `customers` (`id`, `external_id`, `first_name`, `last_name`, `email`, `company`, `industry`, `country`, `city`, `segment`, `lifetime_value`, `churn_risk`, `status`, `created_at`) VALUES
-(1, 'CRM-001', 'Bruce', 'Wayne', 'bruce.wayne@acme.com', 'ACME Corp', 'Tecnología', 'México', 'CDMX', 'silver', 8500.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 300 DAY)),
-(2, 'CRM-002', 'María', 'García', 'maria.garcia@globex.com', 'Globex', 'Manufactura', 'México', 'Monterrey', 'gold', 37000.00, 0.20, 'active', DATE_SUB(NOW(), INTERVAL 250 DAY)),
-(3, 'CRM-003', 'Carlos', 'López', 'carlos.lopez@initech.com', 'Initech', 'Finanzas', 'México', 'Guadalajara', 'bronze', 4200.00, 0.55, 'active', DATE_SUB(NOW(), INTERVAL 200 DAY)),
+(1, 'CRM-001', 'Bruce', 'Wayne', 'bruce.wayne@acme.com', 'ACME Corp', 'Tecnología', 'México', 'CDMX', 'silver', 8500.00, 0.25, 'active', DATE_SUB(NOW(), INTERVAL 300 DAY)),
+(2, 'CRM-002', 'María', 'García', 'maria.garcia@globex.com', 'Globex', 'Manufactura', 'México', 'Monterrey', 'gold', 37000.00, 0.25, 'active', DATE_SUB(NOW(), INTERVAL 250 DAY)),
+(3, 'CRM-003', 'Carlos', 'López', 'carlos.lopez@initech.com', 'Initech', 'Finanzas', 'México', 'Guadalajara', 'bronze', 4200.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 200 DAY)),
 (4, 'CRM-004', 'Ana', 'Martínez', 'ana.martinez@umbrella.com', 'Umbrella', 'Salud', 'México', 'CDMX', 'bronze', 800.00, 0.75, 'active', DATE_SUB(NOW(), INTERVAL 180 DAY)),
-(5, 'CRM-005', 'Luis', 'Rodríguez', 'luis.rodriguez@stark.com', 'Stark Industries', 'Tecnología', 'México', 'Querétaro', 'silver', 9800.00, 0.20, 'active', DATE_SUB(NOW(), INTERVAL 150 DAY)),
+(5, 'CRM-005', 'Luis', 'Rodríguez', 'luis.rodriguez@stark.com', 'Stark Industries', 'Tecnología', 'México', 'Querétaro', 'silver', 9800.00, 0.25, 'active', DATE_SUB(NOW(), INTERVAL 150 DAY)),
 (6, 'CRM-006', 'Pedro', 'Sánchez', 'pedro.sanchez@techcorp.com', 'TechCorp', 'Tecnología', 'México', 'CDMX', 'silver', 8500.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 100 DAY)),
 (7, 'CRM-007', 'Laura', 'Ramírez', 'laura.ramirez@innovatech.com', 'InnovaTech', 'Tecnología', 'México', 'Guadalajara', 'gold', 24500.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 90 DAY)),
 (8, 'CRM-008', 'Diego', 'Torres', 'diego.torres@construye.com', 'Construye MX', 'Construcción', 'México', 'Monterrey', 'bronze', 1800.00, 0.75, 'active', DATE_SUB(NOW(), INTERVAL 80 DAY)),
 (9, 'CRM-009', 'Sofía', 'Mendoza', 'sofia.mendoza@saludplus.com', 'Salud Plus', 'Salud', 'México', 'CDMX', 'platinum', 75000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 75 DAY)),
 (10, 'CRM-010', 'Javier', 'Ríos', 'javier.rios@financiera.com', 'Financiera MX', 'Finanzas', 'México', 'Puebla', 'gold', 28000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 70 DAY)),
-(11, 'CRM-011', 'Carla', 'Vega', 'carla.vega@retailmax.com', 'RetailMax', 'Retail', 'México', 'Tijuana', 'silver', 11000.00, 0.65, 'active', DATE_SUB(NOW(), INTERVAL 60 DAY)),
+(11, 'CRM-011', 'Carla', 'Vega', 'carla.vega@retailmax.com', 'RetailMax', 'Retail', 'México', 'Tijuana', 'silver', 11000.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 60 DAY)),
 (12, 'CRM-012', 'Ricardo', 'Fuentes', 'ricardo.fuentes@logistica.com', 'Logística Ágil', 'Transporte', 'México', 'Querétaro', 'gold', 31500.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 55 DAY)),
 (13, 'CRM-013', 'Patricia', 'Navarro', 'patricia.navarro@educa.com', 'Educa MX', 'Educación', 'México', 'Mérida', 'bronze', 2200.00, 0.60, 'active', DATE_SUB(NOW(), INTERVAL 50 DAY)),
-(14, 'CRM-014', 'Andrés', 'Cruz', 'andres.cruz@alimentos.com', 'Alimentos del Norte', 'Alimentos', 'México', 'Chihuahua', 'silver', 9800.00, 0.70, 'active', DATE_SUB(NOW(), INTERVAL 45 DAY)),
+(14, 'CRM-014', 'Andrés', 'Cruz', 'andres.cruz@alimentos.com', 'Alimentos del Norte', 'Alimentos', 'México', 'Chihuahua', 'silver', 9800.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 45 DAY)),
 (15, 'CRM-015', 'Beatriz', 'Ortiz', 'beatriz.ortiz@moda.com', 'Moda Bella', 'Retail', 'México', 'León', 'bronze', 3500.00, 0.75, 'active', DATE_SUB(NOW(), INTERVAL 40 DAY)),
-(16, 'CRM-016', 'Fernando', 'Salinas', 'fernando.salinas@autopartes.com', 'Autopartes MX', 'Automotriz', 'México', 'Toluca', 'gold', 26500.00, 0.35, 'active', DATE_SUB(NOW(), INTERVAL 35 DAY)),
+(16, 'CRM-016', 'Fernando', 'Salinas', 'fernando.salinas@autopartes.com', 'Autopartes MX', 'Automotriz', 'México', 'Toluca', 'gold', 26500.00, 0.30, 'active', DATE_SUB(NOW(), INTERVAL 35 DAY)),
 (17, 'CRM-017', 'Gabriela', 'Campos', 'gabriela.campos@hoteles.com', 'Hoteles Sol', 'Turismo', 'México', 'Cancún', 'platinum', 58000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 30 DAY)),
-(18, 'CRM-018', 'Hugo', 'Delgado', 'hugo.delgado@seguros.com', 'Seguros Ya', 'Seguros', 'México', 'CDMX', 'silver', 13500.00, 0.70, 'active', DATE_SUB(NOW(), INTERVAL 25 DAY)),
+(18, 'CRM-018', 'Hugo', 'Delgado', 'hugo.delgado@seguros.com', 'Seguros Ya', 'Seguros', 'México', 'CDMX', 'silver', 13500.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 25 DAY)),
 (19, 'CRM-019', 'Isabel', 'Ruiz', 'isabel.ruiz@agro.com', 'AgroCampo', 'Agricultura', 'México', 'Culiacán', 'bronze', 2800.00, 0.75, 'active', DATE_SUB(NOW(), INTERVAL 20 DAY)),
-(20, 'CRM-020', 'Jorge', 'Aguilar', 'jorge.aguilar@energia.com', 'Energía Total', 'Energía', 'México', 'Monterrey', 'gold', 34000.00, 0.35, 'active', DATE_SUB(NOW(), INTERVAL 18 DAY)),
-(21, 'CRM-021', 'Karen', 'Flores', 'karen.flores@belleza.com', 'Belleza Spa', 'Belleza', 'México', 'Guadalajara', 'bronze', 4200.00, 0.65, 'active', DATE_SUB(NOW(), INTERVAL 15 DAY)),
-(22, 'CRM-022', 'Leonardo', 'Espinoza', 'leonardo.espinoza@muebles.com', 'Muebles Fino', 'Muebles', 'México', 'Aguascalientes', 'silver', 7500.00, 0.70, 'active', DATE_SUB(NOW(), INTERVAL 12 DAY)),
+(20, 'CRM-020', 'Jorge', 'Aguilar', 'jorge.aguilar@energia.com', 'Energía Total', 'Energía', 'México', 'Monterrey', 'gold', 34000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 18 DAY)),
+(21, 'CRM-021', 'Karen', 'Flores', 'karen.flores@belleza.com', 'Belleza Spa', 'Belleza', 'México', 'Guadalajara', 'bronze', 4200.00, 0.45, 'active', DATE_SUB(NOW(), INTERVAL 15 DAY)),
+(22, 'CRM-022', 'Leonardo', 'Espinoza', 'leonardo.espinoza@muebles.com', 'Muebles Fino', 'Muebles', 'México', 'Aguascalientes', 'silver', 7500.00, 0.60, 'active', DATE_SUB(NOW(), INTERVAL 12 DAY)),
 (23, 'CRM-023', 'Mónica', 'Chávez', 'monica.chavez@pharma.com', 'PharmaLife', 'Salud', 'México', 'CDMX', 'platinum', 82000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 10 DAY)),
 (24, 'CRM-024', 'Néstor', 'Vargas', 'nestor.vargas@tienda.com', 'Tienda Don Néstor', 'Retail', 'México', 'Oaxaca', 'bronze', 1500.00, 0.75, 'active', DATE_SUB(NOW(), INTERVAL 8 DAY)),
-(25, 'CRM-025', 'Olga', 'Paredes', 'olga.paredes@consultora.com', 'Consultora P&P', 'Consultoría', 'México', 'CDMX', 'gold', 22000.00, 0.20, 'active', DATE_SUB(NOW(), INTERVAL 5 DAY));
+(25, 'CRM-025', 'Olga', 'Paredes', 'olga.paredes@consultora.com', 'Consultora P&P', 'Consultoría', 'México', 'CDMX', 'gold', 22000.00, 0.10, 'active', DATE_SUB(NOW(), INTERVAL 5 DAY));
 
 -- =====================================================
 -- TRANSACCIONES (Calculadas para que cuadren con LTV)
@@ -155,14 +155,14 @@ INSERT INTO `transactions` (`customer_id`, `external_id`, `amount`, `channel`, `
 -- María (LTV 37000)
 (2, 'INV-003', 15000.00, 'store', DATE_SUB(NOW(), INTERVAL 15 DAY)),
 (2, 'INV-004', 22000.00, 'web', DATE_SUB(NOW(), INTERVAL 40 DAY)),
--- Carlos (LTV 4200)
-(3, 'INV-005', 4200.00, 'mobile', DATE_SUB(NOW(), INTERVAL 60 DAY)),
+-- Carlos (LTV 4200) - Ajustado a 58 días
+(3, 'INV-005', 4200.00, 'mobile', DATE_SUB(NOW(), INTERVAL 58 DAY)),
 -- Ana (LTV 800)
 (4, 'INV-006', 800.00, 'web', DATE_SUB(NOW(), INTERVAL 120 DAY)),
--- Luis (LTV 9800)
-(5, 'INV-007', 9800.00, 'web', DATE_SUB(NOW(), INTERVAL 30 DAY)),
--- Pedro (LTV 8500)
-(6, 'INV-008', 4500.00, 'web', DATE_SUB(NOW(), INTERVAL 60 DAY)),
+-- Luis (LTV 9800) - Ajustado a 28 días
+(5, 'INV-007', 9800.00, 'web', DATE_SUB(NOW(), INTERVAL 28 DAY)),
+-- Pedro (LTV 8500) - Ajustado a 58 días
+(6, 'INV-008', 4500.00, 'web', DATE_SUB(NOW(), INTERVAL 58 DAY)),
 (6, 'INV-009', 4000.00, 'store', DATE_SUB(NOW(), INTERVAL 100 DAY)),
 -- Laura (LTV 24500)
 (7, 'INV-010', 10000.00, 'web', DATE_SUB(NOW(), INTERVAL 5 DAY)),
