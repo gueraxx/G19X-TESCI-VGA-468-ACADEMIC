@@ -392,13 +392,21 @@ G19X-TESCI-VGA-468-ACADEMIC/
 │   └── customer360.sql          # Script completo con datos de prueba
 │
 ├── docs/                         # Documentación del proyecto
-│   ├── prd.md
-│   ├── mvp.md
+│   ├── PRD.md
+│   ├── MVP.md
 │   ├── arquitectura.md
 │   ├── manual-usuario.md
 │   ├── plan-pruebas.md
 │   ├── changelog.md
+│   ├── evidencias/
+│   │   └── instalacion-limpia-2026-11-04
 │   └── screenshots/
+│       ├──01-dashboard.png
+│       ├──02-role-viewer.png
+│       ├──03-recalcular-churn.png
+│       ├──04-recomendaciones.png
+│       ├──05-notificaciones.png
+│       └──06-perfil-avatar.png
 │
 ├── includes/
 │   ├── header.php
@@ -438,8 +446,8 @@ ai_cache           → Caché de recomendaciones IA
 
 El script `database/customer360.sql` incluye:
 - ✅ **25 clientes** con diferentes segmentos, LTV y riesgos de churn.
-- ✅ **Múltiples transacciones** con fechas relativas para que el dashboard siempre luzca lleno.
-- ✅ **Interacciones recientes** con sentimientos variados para el timeline.
+- ✅ **57 transacciones** con fechas relativas para que el dashboard siempre luzca lleno.
+- ✅ **25 Interacciones** con sentimientos variados para el timeline.
 - ✅ **4 usuarios** (uno por cada rol).
 - ✅ **0 registros** en `ai_cache` (se llena automáticamente).
 

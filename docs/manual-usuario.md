@@ -1,7 +1,7 @@
 # 📘 Manual de Usuario — Customer 360
 
-**Versión:** 1.0
-**Última actualización:** [Fecha]
+**Versión:** 1.4
+**Última actualización:** 04/11/2026
 **Audiencia:** Usuarios finales (Admin, Analyst, Sales, Viewer)
 **Plataforma:** Aplicación web (Chrome, Firefox, Edge, Safari)
 
@@ -106,16 +106,15 @@
 | **Fallback** | Modo alternativo si la IA falla (usa reglas) |
 
 ### 3.2 Estructura de la información
-
-```
 Cliente
-  ├── Datos básicos (nombre, email, empresa)
-  ├── Segmento (Bronce → Platino)
-  ├── LTV (Valor de vida)
-  ├── Churn Risk (% abandono)
-  ├── Transacciones (compras)
-  └── Interacciones (llamadas, emails, tickets)
-```
+├── Datos básicos (nombre, email, empresa)
+├── Segmento (Bronce → Platino)
+├── LTV (Valor de vida)
+├── Churn Risk (% abandono)
+├── Transacciones (compras)
+└── Interacciones (llamadas, emails, tickets)
+
+text
 
 ---
 
@@ -126,9 +125,9 @@ Cliente
 **Paso 1:** Abre tu navegador
 
 **Paso 2:** Ve a la URL del sistema:
-```
 http://localhost/G19X-TESCI-VGA-468-ACADEMIC
-```
+
+text
 
 **Paso 3:** Serás redirigido a la pantalla de login
 
@@ -439,9 +438,9 @@ El sistema valida automáticamente:
 **Opción 2:** Desde una notificación, clic en el cliente
 
 **Opción 3:** URL directa:
-```
 http://localhost/G19X-TESCI-VGA-468-ACADEMIC/customer-detail.php?id=1
-```
+
+text
 
 ![Perfil 360](screenshots/customer-detail.png)
 *Figura 5: Perfil 360° de un cliente*
@@ -569,10 +568,10 @@ El sistema analiza **múltiples factores**:
 | Estado del cliente | Alto |
 
 **Fórmula simplificada:**
-```
 Score = suma ponderada de factores
 Churn = min(score, 1.0)
-```
+
+text
 
 ### 9.5 Cómo recalcular el churn
 
@@ -676,17 +675,17 @@ Menú lateral → **Recomendaciones**
 En la parte superior verás un banner que indica el modo:
 
 **🤖 IA Generativa activa:**
-```
-[🤖] IA Generativa activa                        ⚡ Powered by Groq
-     5 recomendaciones generadas con openai/gpt-oss-120b
-     ⚡ 3 desde caché
-```
+[🤖] IA Generativa activa ⚡ Powered by Groq
+5 recomendaciones generadas con openai/gpt-oss-120b
+⚡ 3 desde caché
+
+text
 
 **⚙️ Modo reglas de negocio:**
-```
 [⚙️] Modo reglas de negocio
-      La IA no está configurada. Se generan con reglas heurísticas.
-```
+La IA no está configurada. Se generan con reglas heurísticas.
+
+text
 
 ### 11.5 Filtros disponibles
 
@@ -709,17 +708,16 @@ Cada recomendación muestra su origen:
 ### 11.7 Cómo interpretar una recomendación
 
 Cada tarjeta muestra:
-
-```
 ┌─────────────────────────────────────────────────────┐
-│  🛡️ RETENCIÓN    Plan de retención personalizado   │
-│                                                     │
-│  Alto riesgo de abandono detectado (75%).          │
-│  Contactar en las próximas 48 hrs.                  │
-│                                                     │
-│  [Prioridad: alta] [Confianza: 85%] [🤖 IA]        │
+│ 🛡️ RETENCIÓN Plan de retención personalizado │
+│ │
+│ Alto riesgo de abandono detectado (75%). │
+│ Contactar en las próximas 48 hrs. │
+│ │
+│ [Prioridad: alta] [Confianza: 85%] [🤖 IA] │
 └─────────────────────────────────────────────────────┘
-```
+
+text
 
 **Componentes:**
 - 🏷️ **Tipo** (con icono)
@@ -732,10 +730,9 @@ Cada tarjeta muestra:
 ### 11.8 Forzar modo reglas
 
 Si quieres comparar con reglas de negocio, agrega `?rules=1` a la URL:
-
-```
 http://localhost/G19X-TESCI-VGA-468-ACADEMIC/recomendaciones.php?rules=1
-```
+
+text
 
 ---
 
@@ -1096,10 +1093,10 @@ Contacta a soporte: soporte@plurione.com
 ### 🔴 La IA no funciona
 
 **Solución:**
-1. Verifica que `config/ai.local.php` exista
-2. Confirma que la API key de Groq sea válida
-3. Revisa `C:\xampp\apache\logs\error.log`
-4. El sistema usará reglas como fallback
+1. Verifica que el archivo `.env` exista y tenga la clave `GROQ_API_KEY`.
+2. Confirma que la API key de Groq sea válida.
+3. Revisa `C:\xampp\apache\logs\error.log`.
+4. El sistema usará reglas como fallback.
 
 ### 🔴 No puedo editar clientes
 
@@ -1147,7 +1144,7 @@ Contacta a soporte: soporte@plurione.com
 |-------|----------|
 | **Email** | soporte@plurione.com |
 | **Documentación** | `/docs` |
-| **GitHub** | [github.com/tu-usuario/customer360](https://github.com/tu-usuario/customer360) |
+| **GitHub** | [github.com/gueraxx/G19X-TESCI-VGA-468-ACADEMIC](https://github.com/gueraxx/G19X-TESCI-VGA-468-ACADEMIC) |
 
 ### 🕐 Horario de atención
 
@@ -1169,15 +1166,14 @@ Contacta a soporte: soporte@plurione.com
 
 ### Versión del manual
 
-- **Versión actual:** 1.0
-- **Última actualización:** [Fecha]
-- **Próxima revisión:** [Fecha + 3 meses]
+- **Versión actual:** 1.4
+- **Última actualización:** 04/11/2026
 
 ### Historial de cambios
 
 | Versión | Fecha | Cambios |
 |:-------:|-------|---------|
-| 1.0 | [Fecha] | Versión inicial |
+| 1.4 | 04/11/2026 | Actualización de rutas, enlaces y configuración de IA. |
 
 ---
 

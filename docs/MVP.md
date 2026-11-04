@@ -1,6 +1,6 @@
 # 🚀 MVP — Minimum Viable Product
 
-## Customer 360 — Versión 1.2
+## Customer 360 — Versión 1.3
 
 ---
 
@@ -163,5 +163,5 @@ El MVP de Customer 360 entrega **valor inmediato** al:
 
 ---
 
-**Última actualización:** 26/10/2026
-**Versión:** 1.2
+**Última actualización:** 04/11/2026
+**Versión:** 1.4
