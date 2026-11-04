@@ -14,7 +14,7 @@
 | 4 | Abrí la URL en una ventana de incógnito. | ⚠️ Me mandaba directo al dashboard (por la cookie de sesión de mi proyecto original). En incógnito me pidió login correctamente. |
 | 5 | Entré con los 4 roles (Admin, Analyst, Sales, Viewer). | ✅ Viewer no ve "Usuarios", ni "Churn" ni "Segmentos". |
 | 6 | Revisé el Dashboard y busqué/filtré clientes en el listado. | ✅ Las gráficas cargan bien (después de mover Chart.js al `<head>`). El buscador de clientes filtra por nombre y empresa correctamente. |
-| 7 | Recalculé el Churn y los Segmentos. | ✅ Los valores del SQL (LTV, segmento y churn) coinciden exactamente y **no cambiaron** al recalcular (los datos fueron corregidos en la BD para que cuadren). |
+| 7 | Recalculé el Churn y los Segmentos. Anoté los valores antes y después. | ✅ El churn de Bruce se mantuvo en 0.25, Carla en 0.45, Andrés en 0.45 y Leonardo en 0.60. Los segmentos tampoco cambiaron. La captura `03-recalcular-churn.png` demuestra el resultado.  |
 | 8 | Entré a la sección de Usuarios como Admin y creé un usuario de prueba. | ✅ El administrador puede gestionar usuarios (crear, editar y eliminar) sin problemas. |
 | 9 | Abrí los perfiles 360° de los 25 clientes. | ✅ Todos tienen transacciones y un timeline de interacciones. |
 | 10 | Probé las recomendaciones (con GROQ_API_KEY). | ✅ El banner dice "IA Generativa activa". Genera recomendaciones personalizadas. |
@@ -28,6 +28,7 @@
 - **Configuración del puerto de MySQL:** Se documentó en `.env.example` que el puerto puede variar en XAMPP (3306, 3307 o 3308).
 - **Carga de scripts:** Chart.js se movió al `<head>` en `header.php` para asegurar que los gráficos rendericen antes de que `dashboard.js` los llame.
 - **Datos de prueba:** Se ajustaron manualmente los valores de `churn_risk` y `segment` en el SQL para que coincidan al 100% con la lógica de `api/churn.php` y `api/segments.php`.
+
 
 ## 📸 Capturas de pantalla de la instalación
 *(Las capturas se encuentran en `docs/screenshots/`)*
