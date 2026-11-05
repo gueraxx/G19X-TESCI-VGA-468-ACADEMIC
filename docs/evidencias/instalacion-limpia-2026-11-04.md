@@ -1,4 +1,4 @@
-# Instalación desde cero — 27-oct-2026 · commit 6d3b78a
+# Instalación realizada el 2026-11-04
 
 **Repositorio:** G19X-TESCI-VGA-468-ACADEMIC
 **Entorno:** Windows 11, XAMPP (PHP 8.2, MariaDB 10.4), Chrome (Modo Incógnito)
