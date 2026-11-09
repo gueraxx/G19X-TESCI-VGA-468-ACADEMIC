@@ -399,12 +399,12 @@ G19X-TESCI-VGA-468-ACADEMIC/
 │   ├── plan-pruebas.md
 │   ├── changelog.md
 │   ├── evidencias/
-│   │   └── instalacion-limpia-2026-11-04
+│   │   └── instalacion-limpia-2026-11-04.md
 │   └── screenshots/
 │       ├──01-dashboard.png
 │       ├──02-role-viewer.png
 │       ├──03-recalcular-churn.png
-│       ├──04-recomendaciones.png
+│       ├──04-recomendaciones-ia.png
 │       ├──05-notificaciones.png
 │       └──06-perfil-avatar.png
 │

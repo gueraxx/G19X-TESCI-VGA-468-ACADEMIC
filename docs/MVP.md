@@ -1,6 +1,6 @@
 # 🚀 MVP — Minimum Viable Product
 
-## Customer 360 — Versión 1.3
+## Customer 360 — Versión 1.4
 
 ---
 
@@ -95,7 +95,7 @@ El **MVP** de Customer 360 es la versión más pequeña funcional que:
 - [x] Recomendaciones con reglas (fallback) funcionan
 - [x] Notificaciones con enlaces correctos
 
-> 📄 **Evidencia:** Puedes consultar la bitácora completa de esta instalación desde cero en [docs/evidencias/instalacion-limpia-2026-10-27.md](evidencias/instalacion-limpia-2026-10-27.md).
+> 📄 **Evidencia:** Puedes consultar la bitácora completa de esta instalación desde cero en [docs/evidencias/instalacion-limpia-2026-11-04.md](evidencias/instalacion-limpia-2026-11-04.md).
 
 ### 6. Definition of Done (DoD)
 
@@ -119,8 +119,7 @@ Cada historia se considera **Done** cuando:
 | 3 | Manual de instalación | README.md | ✅ |
 | 4 | Manual de usuario | docs/manual-usuario.md | ✅ |
 | 5 | Documentación técnica | docs/*.md | ✅ |
-| 6 | Demo funcional | URL en vivo (InfinityFree) | ⏳ Pendiente |
-| 7 | Presentación | PPT | ⏳ Pendiente |
+
 
 ---
 
@@ -136,20 +135,7 @@ Cada historia se considera **Done** cuando:
 
 ---
 
-### 9. Roadmap Post-MVP
-
-| Fase | Duración estimada | Funcionalidad |
-|------|:-----------------:|--------------|
-| v2.1 | 4 semanas | SSO con Entra ID |
-| v2.2 | 4 semanas | Integración real con CRM/ERP |
-| v2.3 | 6 semanas | Power BI embebido + analytics avanzado |
-| v2.4 | 4 semanas | App móvil (PWA) + notificaciones push |
-| v2.5 | 2 semanas | Paginación server-side + filtros avanzados |
-| v2.6 | 4 semanas | Multi-idioma + chatbot IA |
-
----
-
-### 10. Conclusión
+### 9. Conclusión
 
 El MVP de Customer 360 entrega **valor inmediato** al:
 
